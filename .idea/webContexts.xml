@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/admin/logon/adminLoginForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/admin/logon" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/board.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/boardContent.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/cartDelete.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/cartList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/customer.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/idCheck.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/logout.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/productList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/purchasePage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp/upload.jsp" value="file://$PROJECT_DIR$/src/main/webapp/homepage/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp" />
+      </map>
+    </option>
+  </component>
+</project>

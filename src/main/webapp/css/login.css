@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    flex-direction: column; /* 추가 */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px; /* 로고와 로그인 컨테이너 사이 간격 */
+}
+
+.logo {
+    font-size: 4em;
+    color: #ff69b4;
+}
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #ff69b4;
+    font-size: 1.5em;
+}
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ffb6c1;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.login-form button {
+    background-color: #ff69b4;
+    color: #fff;
+    cursor: pointer;
+}
+.login-form button:hover {
+    background-color: #ff1493;
+}
+.options {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+.options input[type="checkbox"] {
+    margin-right: 5px;
+}
+.options span {
+    display: block;
+    margin-top: 5px;
+    color: #555;
+}
+.extra-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.extra-links button{
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ffb6c1;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.extra-links button:hover{
+    background-color: #eee;
+}

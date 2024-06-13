@@ -1,0 +1,196 @@
+body {
+    background-color: #f0f0f0;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 98%;
+    margin: auto;
+    overflow: hidden;
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+tr:hover {
+    background-color: #f5f5f5;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.write-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.write-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo a {
+    font-size: 70px;
+    color: hotpink;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.auth-menu {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-menu a {
+    padding: 10px 20px;
+    border: 2px solid hotpink;
+    border-radius: 50px;
+    color: hotpink;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.auth-menu a:hover {
+    color: black;
+    border-color: black;
+}
+
+nav {
+    background-color: #f1f1f1;
+    padding: 10px 0;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-menu a {
+    padding: 10px 15px;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.main-menu a:hover {
+    color: hotpink;
+    border-bottom: 2px solid hotpink;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.main-menu li {
+    position: relative;
+}
+
+.main-menu li:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: hotpink;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+div.center {
+    border-top: 2px solid rgb(194, 194, 194);
+    border-bottom: 2px solid rgb(194, 194, 194);
+}
