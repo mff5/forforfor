@@ -19,10 +19,9 @@ import java.util.ArrayList;
 
 @WebServlet("/customer")
 public class CustomerController extends HttpServlet {
-    private CustomerDAO customerDAO = CustomerDAO.getInstance();
-    private CartDAO cartDAO = CartDAO.getInstance();
-    private ProductDAO productDAO = ProductDAO.getInstance();
-    private BoardDAO boardDAO = BoardDAO.getInstance();
+    private final CustomerDAO customerDAO = CustomerDAO.getInstance();
+    private final CartDAO cartDAO = CartDAO.getInstance();
+    private final ProductDAO productDAO = ProductDAO.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         handleRequest(request, response);

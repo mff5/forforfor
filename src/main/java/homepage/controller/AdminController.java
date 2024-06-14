@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
-    CustomerDAO customerDAO = CustomerDAO.getInstance();
-    BoardDAO boardDAO = BoardDAO.getInstance();
+    private final CustomerDAO customerDAO = CustomerDAO.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,7 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="homepage.dao.ProductDAO" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="homepage.vo.ProductVO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
 <%
     String loginId = (String) session.getAttribute("loginId");
