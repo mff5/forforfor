@@ -1,31 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    CustomerDAO dao = CustomerDAO.getInstance();
-
-    String loginId = (String) session.getAttribute("loginId");
-    CustomerVO person = dao.getCustomer(loginId);
-%>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
     <meta charset="UTF-8">
-    <title>회원정보 변경</title>
+    <title>회원가입</title>
     <script language="javascript" src="${pageContext.request.contextPath}/js/customer.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/customer.css">
-    <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+    <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
+    <style>
+
+    </style>
 </head>
+<body>
 <div class="logo-container">
-    <a href="main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
-<h1>회원정보 변경</h1>
+<h1>회원가입</h1>
 <div class="container">
-    <form id="oneone" action="../jspProc/customerModifyProc.jsp" method="post">
+    <form id="oneone" action="${pageContext.request.contextPath}/customer?action=insertCustomer" method="post" onsubmit="return allCheck()">
         <table>
             <tr>
                 <td class="td1"><label for="userId">사용자ID</label><span style="color: red;"> *</span></td>
                 <td class="td2">
-                    <input type="text" name="userId" id="userId" value="<%=person.getUserId()%>" readonly required style="width: calc(50% - 16px); display: inline-block;">
+                    <input type="text" name="userId" id="userId" required style="width: calc(50% - 16px); display: inline-block;">
+                    <button type="button" class="button-small" style="display: inline-block;" onclick="idCheck()">ID 중복확인</button>
                     <div id="userIdInfo" class="error-info"></div>
                 </td>
             </tr>
@@ -140,7 +139,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="center-button">
-                    <button type="submit">회원정보 변경</button>
+                    <button type="submit">회원가입</button>
                 </td>
             </tr>
         </table>

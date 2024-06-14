@@ -2,11 +2,9 @@ package homepage.dao;
 
 import homepage.ConnectionPool;
 import homepage.PooledConnection;
-import homepage.vo.BoardVO;
+import homepage.model.Board;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +26,7 @@ public class BoardDAO {
         return instance;
     }
 
-    public boolean insertBoard(BoardVO board) {
+    public boolean insertBoard(Board board) {
         boolean result = false;
         String sql;
         int postNo = board.getPostNo();
@@ -106,8 +104,8 @@ public class BoardDAO {
     }
 
     //카운터 증가o
-    public BoardVO updateViewsGetBoard(int postNo) {
-        BoardVO board = null;
+    public Board updateViewsGetBoard(int postNo) {
+        Board board = null;
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
              PreparedStatement pstmt = con.prepareStatement("update Board set views=views+1 where post_no = ?");
@@ -119,7 +117,7 @@ public class BoardDAO {
             pstmt2.setInt(1, postNo);
             try (ResultSet rs = pstmt2.executeQuery()) {
                 if (rs.next()) {
-                    board = new BoardVO();
+                    board = new Board();
                     board.setPostNo(rs.getInt("post_no"));
                     board.setUserId(rs.getString("userId"));
                     board.setEmail(rs.getString("email"));
@@ -151,15 +149,15 @@ public class BoardDAO {
     }
 
     //카운터 증가x
-    public BoardVO getBoard(int postNo) {
-        BoardVO board = null;
+    public Board getBoard(int postNo) {
+        Board board = null;
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
              PreparedStatement pstmt = con.prepareStatement("select * from board where post_no=?")) {
             pstmt.setInt(1, postNo);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    board = new BoardVO();
+                    board = new Board();
                     board.setPostNo(rs.getInt("post_no"));
                     board.setUserId(rs.getString("userId"));
                     board.setEmail(rs.getString("email"));
@@ -190,7 +188,7 @@ public class BoardDAO {
         return board;
     }
 
-    public boolean updateBoard(BoardVO board) {
+    public boolean updateBoard(Board board) {
         boolean result = false;
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
@@ -237,8 +235,8 @@ public class BoardDAO {
         return result;
     }
 
-    public ArrayList<BoardVO> getBoardList(int start, int end) {
-        ArrayList<BoardVO> boardList = new ArrayList<>();
+    public ArrayList<Board> getBoardList(int start, int end) {
+        ArrayList<Board> boardList = new ArrayList<>();
         String sql = "select * from board order by ref_no desc, step_no asc offset ? rows fetch next ? rows only ";
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
@@ -252,7 +250,7 @@ public class BoardDAO {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    BoardVO board = new BoardVO();
+                    Board board = new Board();
                     board.setPostNo(rs.getInt("post_no"));
                     board.setUserId(rs.getString("userId"));
                     board.setEmail(rs.getString("email"));

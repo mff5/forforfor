@@ -1,29 +1,65 @@
 function customer() {
-    window.location.href = '/homepage/jsp/customer.jsp';
+    window.location.href = '/homepage/customer/customer.jsp';
 }
 function login() {
-    window.location.href = '/homepage/jsp/login.jsp';
+    window.location.href = '/homepage/customer/login.jsp';
+}
+function modify() {
+    window.location.href = '/homepage/customer/customerUpdate.jsp';
+}
+function del() {
+    window.location.href = '/homepage/customer/customerDelete.jsp';
+}
+function customerList() {
+    window.location.href = '/homepage/admin?action=customerList';
+}
+function resetCustomer() {
+    if (confirm("정말 초기화하시곘습니까?"))  {
+        window.location.href = '/homepage/admin?action=customerReset';
+    }
+}
+function goDelete(userId) {
+    if (confirm("정말로 삭제하시겠습니까?")) {
+        window.location.href = '/homepage/admin?action=deleteCustomer&userId=' + encodeURIComponent(userId);
+    }
 }
 function logout()   {
     if (confirm("로그아웃하시겠습니까?"))    {
-        window.location.href = '/homepage/jsp/logout.jsp';
+        window.location.href = '/homepage/views/logout.jsp';
     }
 }
-function modify() {
-    window.location.href = '/homepage/jsp/customerModify.jsp';
-}
-function customerList() {
-    window.location.href = '/homepage/jsp/customerList.jsp';
-}
-function del() {
-    window.location.href = '/homepage/jsp/customerDelete.jsp';
-}
 function products() {
-    window.location.href = '/homepage/jsp/productList.jsp';
+    window.location.href = '/homepage/admin?action=customerList';
 }
-function cart() {
-    window.location.href = '/homepage/jsp/cartList.jsp';
+function cart(productNo) {
+    window.location.href = '/homepage/costumer?action=insertCart&productNo=' + encodeURIComponent(productNo);
 }
+function deleteCart(cartNo) {
+    if (confirm("삭제하시겠습니까?")){
+        window.location.href = '/homepage/customer?action=deleteCart&cartNo='+encodeURIComponent(cartNo);
+    }
+}
+function clearCart() {
+    if (confirm("카트를 비우시겠습니까??"))    {
+        window.location.href = '/homepage/customer?action=resetCart';
+    }
+}
+
+function selectPaymentMethod(meth) {
+    if (confirm(meth + "로 결제하시겠습니까?")) {
+        window.location.href = '/homepage/customer?action=purchase&meth=' + encodeURIComponent(meth);
+    }
+}
+function goCart() {
+    window.location.href = '/homepage/customer?action=cartList';
+}
+
+
+
+
+
+
+
 function qna() {
     window.location.href = '/homepage/jsp/boardList.jsp';
 }

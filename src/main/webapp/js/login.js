@@ -10,11 +10,11 @@ function checkIdPw(event) {
     return true;
 }
 function findId() {
-    window.location.href='findId.jsp';
+    window.location.href='/homepage/customer/findId.jsp';
 }
 function findPw() {
-    window.location.href='findPw.jsp';
+    window.location.href='/homepage/customer/findPw.jsp';
 }
 function customer() {
-    window.location.href='customer.jsp';
+    window.location.href='/homepage/customer/customer.jsp';
 }

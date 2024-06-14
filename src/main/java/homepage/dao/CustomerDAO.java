@@ -2,7 +2,8 @@ package homepage.dao;
 
 import homepage.ConnectionPool;
 import homepage.PooledConnection;
-import homepage.vo.CustomerVO;
+import homepage.model.Customer;
+
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -42,7 +43,7 @@ public class CustomerDAO {
         return result;
     }
 
-    public boolean insertCustomer(CustomerVO customer)    {
+    public boolean insertCustomer(Customer customer)    {
         boolean flag = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
@@ -89,8 +90,8 @@ public class CustomerDAO {
         }
         return check;
     }
-    public CustomerVO getCustomer(String userId)   {
-        CustomerVO person = null;
+    public Customer getCustomer(String userId)   {
+        Customer person = null;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
             PreparedStatement pstmt = con.prepareStatement("select * from customers where userId=?")) {
@@ -98,7 +99,7 @@ public class CustomerDAO {
             pstmt.setString(1,userId);
             try(ResultSet rs = pstmt.executeQuery()) {
                  if (rs.next()) {
-                     person = new CustomerVO();
+                     person = new Customer();
                      person.setUserId(rs.getString("userId"));
                      person.setUserPw(rs.getString("userPw"));
                      person.setUserName(rs.getString("userName"));
@@ -126,21 +127,24 @@ public class CustomerDAO {
         }
         return person;
     }
-    public boolean updateCustomer(CustomerVO person)   {
+    public boolean updateCustomer(Customer customer)   {
         boolean result = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("update customers set userPw=?, userName=?, userEmail=?, " +
-                    "userPost=?, address=?, phone=? where userId = ?")) {
-            pstmt.setString(1, person.getUserPw());
-            pstmt.setString(2, person.getUserName());
-            pstmt.setString(3, person.getUserEmail());
-            pstmt.setString(4, person.getUserPost());
-            pstmt.setString(5, person.getAddress1()+"," + person.getAddress2());
-            pstmt.setString(6, person.getPhone1()+"-"+person.getPhone2()+"-"+person.getPhone3());
-            pstmt.setString(7, person.getUserId());
+            CallableStatement cstmt = con.prepareCall("{call update_customer(?,?,?,?,?,?,?,?,?,?,?)}")) {
+            cstmt.setString(1, customer.getUserId());
+            cstmt.setString(2, customer.getUserPw());
+            cstmt.setString(3, customer.getUserName());
+            cstmt.setString(4, customer.getUserEmail());
+            cstmt.setString(5, customer.getUserPost());
+            cstmt.setString(6, customer.getAddress1()+"," + customer.getAddress2());
+            cstmt.setString(7, customer.getPhone1()+"-"+customer.getPhone2()+"-"+customer.getPhone3());
+            cstmt.setString(8, customer.getIdQuestion());
+            cstmt.setString(9, customer.getIdAnswer());
+            cstmt.setString(10, customer.getPwQuestion());
+            cstmt.setString(11, customer.getPwAnswer());
 
-            if (pstmt.executeUpdate()==1)   {
+            if (cstmt.executeUpdate()==1)   {
                 result = true;
             }
         } catch (Exception e)   {
@@ -160,21 +164,20 @@ public class CustomerDAO {
             if (pstmt.executeUpdate()==1)   {
                 result = true;
             }
-
-
         } catch (Exception e)   {
             e.printStackTrace();
         }
         return result;
     }
-    public ArrayList<CustomerVO> customerList()  {
-        ArrayList<CustomerVO> personList = new ArrayList<>();
+    public ArrayList<Customer> customerList()  {
+        ArrayList<Customer> customerList = new ArrayList<>();
+        String sql = "select * from customers order by customer_no asc";
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
-            PreparedStatement pstmt = con.prepareStatement("select * from customers order by customer_no asc ");
+            PreparedStatement pstmt = con.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery()) {
             while (rs.next())   {
-                CustomerVO customer = new CustomerVO();
+                Customer customer = new Customer();
                 customer.setCustomerNo(rs.getInt("customer_no"));
                 customer.setUserId(rs.getString("userId"));
                 customer.setUserPw(rs.getString("userPw"));
@@ -194,14 +197,12 @@ public class CustomerDAO {
                 customer.setPhone3(phoneNumParts.length > 2 ? phoneNumParts[2] : "");
 
                 customer.setRegisterDate(rs.getDate("regDate"));
-
-                personList.add(customer);
+                customerList.add(customer);
             }
-
         } catch (Exception e)   {
             e.printStackTrace();
         }
-        return personList;
+        return customerList;
     }
     public boolean deleteCustomer(String userId)   {
         boolean result = false;

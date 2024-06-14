@@ -1,9 +1,12 @@
+<%@ page import="homepage.model.Customer" %>
+<%@ page import="homepage.dao.CustomerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    CustomerDAO dao = CustomerDAO.getInstance();
+    CustomerDAO customerDAO = CustomerDAO.getInstance();
 
     String loginId = (String) session.getAttribute("loginId");
-    CustomerVO person = dao.getCustomer(loginId);
+
+    Customer customer = customerDAO.getCustomer(loginId);
 %>
 <html>
 <head>
@@ -20,12 +23,12 @@
 </div>
 <h1>회원정보 변경</h1>
 <div class="container">
-    <form id="oneone" action="../jspProc/customerModifyProc.jsp" method="post">
+    <form id="oneone" action="${pageContext.request.contextPath}/customer?action=updateCustomer" method="post">
         <table>
             <tr>
                 <td class="td1"><label for="userId">사용자ID</label><span style="color: red;"> *</span></td>
                 <td class="td2">
-                    <input type="text" name="userId" id="userId" value="<%=person.getUserId()%>" readonly required style="width: calc(50% - 16px); display: inline-block;">
+                    <input type="text" name="userId" id="userId" value="<%=customer.getUserId()%>" readonly required style="width: calc(50% - 16px); display: inline-block;">
                     <div id="userIdInfo" class="error-info"></div>
                 </td>
             </tr>

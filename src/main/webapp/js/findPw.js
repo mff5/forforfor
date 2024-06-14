@@ -11,7 +11,7 @@ function idCheck2() {
         const left = (screen.width - popupWidth) / 2;
         const top = (screen.height - popupHeight) / 2;
         window.open(
-            'idCheck2.jsp?userId=' + encodeURIComponent(userId),
+            '/homepage/customer?action=idCheck2&userId=' + encodeURIComponent(userId),
             'idCheckPopup',
             `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
         );

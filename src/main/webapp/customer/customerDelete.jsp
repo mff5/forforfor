@@ -9,7 +9,7 @@
 </head>
 <body onload="begin()">
 <div class="delete-container">
-    <form name="delete" method="post" action="../jspProc/customerDeleteProc.jsp" class="delete-form" onsubmit="return checkIt()">
+    <form name="delete" method="post" action="${pageContext.request.contextPath}/customer?action=deleteCustomer" class="delete-form" onsubmit="return checkIt()">
         <h2>회원 탈퇴</h2>
         <div>
             <label for="userPw"><b>비밀번호 입력</b></label>

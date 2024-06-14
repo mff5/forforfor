@@ -2,8 +2,9 @@ package homepage.dao;
 
 import homepage.ConnectionPool;
 import homepage.PooledConnection;
-import homepage.vo.CartVO;
-import homepage.vo.ProductVO;
+import homepage.model.Cart;
+import homepage.model.Product;
+
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -44,7 +45,7 @@ public class CartDAO {
         return count;
     }
 
-    public boolean insertCart(ProductVO product) {
+    public boolean insertCart(Product product) {
         boolean result = false;
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
@@ -112,8 +113,8 @@ public class CartDAO {
         }
         return result;
     }
-    public ArrayList<CartVO> cartList() {
-        ArrayList<CartVO> cartList = new ArrayList<>();
+    public ArrayList<Cart> cartList() {
+        ArrayList<Cart> cartList = new ArrayList<>();
         String sql = "select * from cart order by cart_no";
 
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
@@ -122,7 +123,7 @@ public class CartDAO {
              ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
-                    CartVO cart = new CartVO();
+                    Cart cart = new Cart();
                     cart.setCartNo(rs.getInt("cart_no"));
                     cart.setImgURL(rs.getString("imgURL"));
                     cart.setCategory(rs.getString("category"));
@@ -137,8 +138,8 @@ public class CartDAO {
         }
         return cartList;
     }
-    public ArrayList<CartVO> cartList2(int start, int end) {
-        ArrayList<CartVO> cartList = new ArrayList<>();
+    public ArrayList<Cart> cartList2(int start, int end) {
+        ArrayList<Cart> cartList = new ArrayList<>();
         String sql = "select * from cart order by cart_no asc offset ? rows fetch next ? rows only";
 
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
@@ -153,7 +154,7 @@ public class CartDAO {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    CartVO cart = new CartVO();
+                    Cart cart = new Cart();
                     cart.setCartNo(rs.getInt("cart_no"));
                     cart.setImgURL(rs.getString("imgURL"));
                     cart.setCategory(rs.getString("category"));

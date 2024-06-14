@@ -13,8 +13,7 @@
     <a href="${pageContext.request.contextPath}/jsp/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
 <div class="login-container">
-    <form class="login-form" action="../jspProc/loginProc.jsp" method="post"
-          onsubmit="return checkIdPw(event)">
+    <form class="login-form" action="${pageContext.request.contextPath}/customer?action=loginCheck" method="post" onsubmit="return checkIdPw(event)">
         <h2>로그인</h2>
         <input type="text" id="userId" name="userId" placeholder="아이디" required>
         <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required>

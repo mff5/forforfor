@@ -2,7 +2,7 @@ package homepage.dao;
 
 import homepage.ConnectionPool;
 import homepage.PooledConnection;
-import homepage.vo.ProductVO;
+import homepage.model.Product;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -19,7 +19,7 @@ public class ProductDAO {
         }
         return instance;
     }
-    public boolean insertProduct(ProductVO product)  {
+    public boolean insertProduct(Product product)  {
         boolean result = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
@@ -46,7 +46,7 @@ public class ProductDAO {
         }
         return result;
     }
-    public boolean updateProduct(ProductVO product) {
+    public boolean updateProduct(Product product) {
         boolean result = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
@@ -91,8 +91,8 @@ public class ProductDAO {
         }
         return count;
     }
-    public ProductVO getProduct(int productNo)  {
-        ProductVO product = null;
+    public Product getProduct(int productNo)  {
+        Product product = null;
         String sql = "select * from products where product_no = ?";
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
         Connection con = pcon.getConnection();
@@ -102,7 +102,7 @@ public class ProductDAO {
 
             try(ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    product = new ProductVO();
+                    product = new Product();
                     product.setProductNo(rs.getInt("product_no"));
                     product.setImgURL(rs.getString("imgURL"));
                     product.setCategory(rs.getString("category"));
@@ -124,15 +124,15 @@ public class ProductDAO {
         }
         return product;
     }
-    public ArrayList<ProductVO> getProductList()  {
-        ArrayList<ProductVO> productList = new ArrayList<>();
+    public ArrayList<Product> getProductList()  {
+        ArrayList<Product> productList = new ArrayList<>();
 
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
             PreparedStatement pstmt = con.prepareStatement("select * from products where stock>0 order by product_no desc ");
             ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                ProductVO product = new ProductVO();
+                Product product = new Product();
                 product.setProductNo(rs.getInt("product_no"));
                 product.setImgURL(rs.getString("imgURL"));
                 product.setCategory(rs.getString("category"));
@@ -153,8 +153,8 @@ public class ProductDAO {
         return productList;
     }
 
-    public ArrayList<ProductVO> getProductList2(int start, int end)  {
-        ArrayList<ProductVO> productList = new ArrayList<>();
+    public ArrayList<Product> getProductList2(int start, int end)  {
+        ArrayList<Product> productList = new ArrayList<>();
         String sql = "select * from products where stock>0 order by product_no desc offset ? row fetch next ? rows only";
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
@@ -168,7 +168,7 @@ public class ProductDAO {
 
             try(ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    ProductVO product = new ProductVO();
+                    Product product = new Product();
                     product.setProductNo(rs.getInt("product_no"));
                     product.setImgURL(rs.getString("imgURL"));
                     product.setCategory(rs.getString("category"));
@@ -214,8 +214,8 @@ public class ProductDAO {
 
         return result;
     }
-    public ArrayList<ProductVO> getProductList3()  {
-        ArrayList<ProductVO> productList = new ArrayList<>();
+    public ArrayList<Product> getProductList3()  {
+        ArrayList<Product> productList = new ArrayList<>();
         String sql = "select * from (select * from products order by created_date desc ) where ROWNUM <=3";
 
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
@@ -223,7 +223,7 @@ public class ProductDAO {
         PreparedStatement pstmt = con.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                ProductVO product = new ProductVO();
+                Product product = new Product();
                 product.setProductNo(rs.getInt("product_no"));
                 product.setImgURL(rs.getString("imgURL"));
                 product.setCategory(rs.getString("category"));

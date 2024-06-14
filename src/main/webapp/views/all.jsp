@@ -1,35 +1,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="homepage.dao.CustomerDAO" %>
-<%@ page import="homepage.vo.CustomerVO" %>
+<%@ page import="homepage.dao.ProductDAO" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="homepage.vo.ProductVO" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
+<%
+    String loginId = (String) session.getAttribute("loginId");
+    ProductDAO dao = ProductDAO.getInstance();
+    ArrayList<ProductVO> productList = dao.getProductList();
 
+    request.setAttribute("loginId", loginId);
+    request.setAttribute("productList", productList);
+%>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>회원리스트</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customerList.css">
-    <script src="${pageContext.request.contextPath}/js/customerList.js"></script>
+    <title>Title</title>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/all.js" charset="utf-8"></script>
 </head>
 <body>
 <header>
     <div class="header-container">
         <div class="logo">
-            <a href="main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+            <a href="${pageContext.request.contextPath}/jsp/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
         </div>
-
         <c:choose>
-
-            <c:when test="${loginId==null}">
-
+            <c:when test="${loginId == null}">
                 <ul class="auth-menu">
                     <li><a href="#" onclick="login()">Login</a></li>
                     <li><a href="#" onclick="customer()">Signup</a></li>
                 </ul>
             </c:when>
             <c:when test="${loginId.equals('admin')}">
-
                 <ul class="auth-menu">
                     <li><a href="#" onclick="qna()">고객센터</a></li>
                     <li><a href="#" onclick="products()">상품관리</a></li>
@@ -41,7 +45,7 @@
             <c:otherwise>
                 <ul class="auth-menu">
                     <li><a href="#" onclick="qna()">고객센터</a></li>
-                    <li><a href="#" onclick="cart()">Cart</a></li>
+                    <li><a href="#" onclick="goCart()">Cart</a></li>
                     <li><a href="#" onclick="modify()">회원정보변경</a></li>
                     <li><a href="#" onclick="logout()">로그아웃</a></li>
                     <li><a href="#" onclick="del()">회원탈퇴</a></li>
@@ -51,8 +55,8 @@
     </div>
     <nav>
         <ul class="main-menu">
-            <li><a href="main.jsp">Home</a></li>
-            <li><a href="all.jsp">전체</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/all.jsp">전체</a></li>
             <li>
                 <a href="#">Eyelash</a>
                 <div class="dropdown-content">
@@ -84,40 +88,51 @@
         </ul>
     </nav>
 </header>
-<div class="container">
-    <div class="header">
-        <b>회원목록</b>
-        <a href="#" class="write-btn" onclick="resetCustomer()">회원목록 초기화</a>
-    </div>
-        <table>
-            <tr>
-                <th>회원번호</th>
-                <th>아이디</th>
-                <th>비밀번호</th>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>우편번호</th>
-                <th>주소</th>
-                <th>전화번호</th>
-                <th>등록일</th>
-                <th>삭제</th>
-            </tr>
-            <c:forEach var="c" items="${customerList}">
-                <tr>
-                    <td>${c.customerNo}</td>
-                    <td>${c.userId}</td>
-                    <td>${c.userPw}</td>
-                    <td>${c.userName}</td>
-                    <td>${c.userEmail}</td>
-                    <td>${c.userPost}</td>
-                    <td>${c.address1}, ${c.address2}</td>
-                    <td>${c.phone1}-${c.phone2}-${c.phone3}</td>
-                    <td>${c.registerDate}</td>
-                    <td><button class="delete-button" type="button" onclick="goDelete('${c.userId}')">삭제</button></td>
-                </tr>
-            </c:forEach>
-        </table>
-</div>
+<main>
+    <section>
+        <h2>전체</h2><br><br>
+        <span>총<b style="color: #504EB3"><%=productList.size()%></b>건</span>
+        <div style="text-align: right">
+            <a href="#">판매량순</a> |
+            <a href="#">낮은가격순</a> |
+            <a href="#">높은가격순</a> |
+            <a href="#">상품후기순</a> |
+            <a href="#">신상품순</a>
+        </div>
+        <div>
+            <c:choose>
+                <c:when test="${not empty productList}">
+                    <table align="center">
+                        <c:forEach var="p" varStatus="status" items="${productList}">
+                            <c:if test="${status.index % 4 ==0}">
+                                <tr>
+                            </c:if>
+                            <td>
+                                <img src="${p.imgURL}" alt="대체사진" class="tbImg"
+                                <c:if test="${loginId != null && !loginId.equals('admin')}">
+                                     onclick="cart(${p.productNo})"
+                                </c:if>
+                                >
+                                <br>
+                                <span class="bold">${p.productName}</span><br>
+                                <span class="discount">${p.discount}%</span>
+                                <span class="price">₩${p.price}</span>
+                                <span class="original">₩${p.originalPrice}</span>
+                            </td>
+                            <c:if test="${status.index % 4 ==3 || status.last}">
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <h1 align="center">등록된 상품이 없습니다.</h1>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </section>
+</main>
 <footer>
     <div class="footer-main">
         <div class="footer-links">
