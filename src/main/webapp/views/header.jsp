@@ -18,10 +18,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js" charset="utf-8"></script>
 </head>
-<body onload="initializeSlideshow()">
+<body onload="">
 <header>
     <div class="header-container">
         <div class="logo">

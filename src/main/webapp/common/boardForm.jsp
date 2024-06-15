@@ -9,31 +9,35 @@
 </head>
 <body>
 <div class="logo-container">
-    <a href="${pageContext.request.contextPath}/jsp/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
 <%
     String loginId = (String) session.getAttribute("loginId");
     int postNo=0, refNo=1, stepNo=0, depthLevel=0;
-    try {
-        if (request.getParameter("postNo") != null) {
-            postNo = Integer.parseInt(request.getParameter("postNo"));
-            refNo = Integer.parseInt(request.getParameter("refNo"));
-            stepNo = Integer.parseInt(request.getParameter("stepNo"));
-            depthLevel = Integer.parseInt(request.getParameter("depthLevel"));
-        }
+    if (request.getParameter("postNo") != null) {
+        postNo = Integer.parseInt(request.getParameter("postNo"));
+        refNo = Integer.parseInt(request.getParameter("refNo"));
+        stepNo = Integer.parseInt(request.getParameter("stepNo"));
+        depthLevel = Integer.parseInt(request.getParameter("depthLevel"));
+    }
+    request.setAttribute("loginId", loginId);
+    request.setAttribute("postNo", postNo);
+    request.setAttribute("refNo", refNo);
+    request.setAttribute("stepNo", stepNo);
+    request.setAttribute("depthLevel", depthLevel);
 %>
 <div class="container">
     <h2 class="title">문의하기</h2>
-    <form method="post" name="boardForm" action="../jspProc/boardProc.jsp" onsubmit="return validateForm()">
-        <input type="hidden" name="postNo" value="<%=postNo%>">
-        <input type="hidden" name="refNo" value="<%=refNo%>">
-        <input type="hidden" name="stepNo" value="<%=stepNo%>">
-        <input type="hidden" name="depthLevel" value="<%=depthLevel%>">
+    <form method="post" name="boardForm" action="${pageContext.request.contextPath}/common?action=insertBoard" onsubmit="return validateForm()">
+        <input type="hidden" name="postNo" value="${postNo}">
+        <input type="hidden" name="refNo" value="${refNo}">
+        <input type="hidden" name="stepNo" value="${stepNo}">
+        <input type="hidden" name="depthLevel" value="${depthLevel}">
         <table>
             <tr>
                 <td class="td1"><label for="userId">사용자ID</label></td>
                 <td class="td2">
-                    <input type="text" name="userId" id="userId" required value="<%=loginId%>" readonly>
+                    <input type="text" name="userId" id="userId" required value="${loginId}" readonly>
                 </td>
             </tr>
             <tr>
@@ -85,10 +89,5 @@
         </table>
     </form>
 </div>
-<%
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-%>
 </body>
 </html>

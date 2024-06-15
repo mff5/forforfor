@@ -46,9 +46,6 @@ public class CustomerController extends HttpServlet {
             case "insertCustomer":
                 insertCustomer(request, response);
                 break;
-            case "loginCheck":
-                loginCheck(request, response);
-                break;
             case "updateCustomer":
                 updateCustomer(request, response);
                 break;
@@ -79,7 +76,14 @@ public class CustomerController extends HttpServlet {
             case "purchase":
                 purchase(request, response);
                 break;
+            case "customerForm":
+                customerForm(request, response);
+                break;
         }
+    }
+    private void customerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getRequestDispatcher("/customer/customerForm.jsp").forward(request, response);
     }
 
     private void idCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -128,17 +132,8 @@ public class CustomerController extends HttpServlet {
         request.getRequestDispatcher("/customer/customerProc.jsp").forward(request, response);
     }
 
-    private void loginCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter("userId");
-        String userPw = request.getParameter("userPw");
 
-        int result = customerDAO.loginCheck(userId, userPw);
 
-        request.setAttribute("result", result);
-        request.setAttribute("userId", userId);
-
-        request.getRequestDispatcher("/customer/loginProc.jsp").forward(request, response);
-    }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");

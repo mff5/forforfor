@@ -10,6 +10,6 @@
 <c:if test="${result}">
     <script>
         alert("회원가입 실패");
-        window.location.href = '${pageContext.request.contextPath}/customer/customer.jsp';
+        window.location.href = '${pageContext.request.contextPath}/customer/customerForm.jsp';
     </script>
 </c:if>

@@ -14,7 +14,7 @@ function validateForm() {
 }
 
 function goList() {
-    window.location.href = '../jsp/boardList.jsp';
+    window.location.href = '/homepage/common?action=boardList';
 }
 
 function passwordOkCheck() {

@@ -16,5 +16,5 @@ function findPw() {
     window.location.href='/homepage/customer/findPw.jsp';
 }
 function customer() {
-    window.location.href='/homepage/customer/customer.jsp';
+    window.location.href='/homepage/customer?action=customerForm';
 }

@@ -15,7 +15,7 @@
             <%
             session.invalidate();
             %>
-            window.location.href='main.jsp';
+            window.location.href='/homepage/views/main.jsp';
         </script>
     </c:when>
     <c:otherwise>

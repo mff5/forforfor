@@ -1,8 +1,8 @@
 function customer() {
-    window.location.href = 'customer.jsp';
+    window.location.href = '/homepage/customer?action=customerForm';
 }
 function login() {
-    window.location.href = 'login.jsp';
+    window.location.href = '/homepage/common?action=loginForm';
 }
 function logout()   {
     if (confirm("로그아웃하시겠습니까?")) {

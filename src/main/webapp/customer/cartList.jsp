@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<jsp:include page="../views/header.jsp"/>
+<jsp:include page="/views/header.jsp"/>
 <style>
     body {
         background-color: #f0f0f0;
@@ -82,4 +82,4 @@
     </div>
 </c:if>
 
-<jsp:include page="../views/footer.jsp"/>
+<jsp:include page="/views/footer.jsp"/>

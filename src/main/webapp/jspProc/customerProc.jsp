@@ -19,7 +19,7 @@
 <c:if test="${result}">
     <script>
         alert("회원가입 성공");
-        window.location.href = '../customer/login.jsp';
+        window.location.href = '../customer/loginForm.jsp';
     </script>
 </c:if>
 <c:if test="${result}">
