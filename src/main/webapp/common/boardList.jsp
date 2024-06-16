@@ -7,7 +7,7 @@
 <div class="container">
     <div class="header">
         <b>글목록(전체 글: ${count})</b>
-        <a href="${pageContext.request.contextPath}/common/boardForm.jsp" class="write-btn">글쓰기</a>
+        <a href="${pageContext.request.contextPath}/common?action=boardForm" class="write-btn">글쓰기</a>
     </div>
     <table>
         <tr>
@@ -29,13 +29,13 @@
                 <td>${number}</td>
                 <td>
                     <c:if test="${board.depthLevel > 0}">
-                        <img src="../images/level.gif" width="${5 * board.depthLevel}" height="16">
-                        <img src="../images/re.gif">
+                        <img src="<c:url value="/images/re.gif"/>" width="${5 * board.depthLevel}" height="16">
+                        <img src="<c:url value="/images/re.gif"/>">
                     </c:if>
                     <c:if test="${board.depthLevel == 0}">
                         <img src="../images/level.gif" width="0" height="16">
                     </c:if>
-                    <a href="/homepage/common?action=boardContent&postNo=${board.postNo}&pageNum=${currentPage}">${board.title}</a>
+                    <a href="${pageContext.request.contextPath}/common?action=boardContent&postNo=${board.postNo}&pageNum=${currentPage}">${board.title}</a>
                     <c:if test="${board.views >= 20}">
                         <img src="../images/hot.gif" border="0" height="16">
                     </c:if>
@@ -50,13 +50,13 @@
     </table>
     <c:if test="${count > 0}">
         <c:if test="${startPage > pageBlock}">
-            <a href="boardList.jsp?pageNum=${startPage - pageBlock}">[이전]</a>
+            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${startPage - pageBlock}">[이전]</a>
         </c:if>
         <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a href="boardList.jsp?pageNum=${i}">[${i}]</a>
+            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${i}">[${i}]</a>
         </c:forEach>
         <c:if test="${endPage < pageCount}">
-            <a href="boardList.jsp?pageNum=${startPage + pageBlock}">[다음]</a>
+            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${startPage + pageBlock}">[다음]</a>
         </c:if>
     </c:if>
 </div>

@@ -9,7 +9,7 @@ public class DBUtil {
         public static Connection getConnection() {
             Connection con = null;
             try {
-                String filePath = "C:\\Users\\road5\\Documents\\aaaaaa\\forforfor\\src\\main\\java\\homepage\\homepage.properties";
+                String filePath = "D:\\forforfor\\src\\main\\java\\homepage\\homepage.properties";
 
                 Properties properties = new Properties();
                 properties.load(new FileReader(filePath));

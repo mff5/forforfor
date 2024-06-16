@@ -171,7 +171,7 @@ public class CustomerDAO {
     }
     public ArrayList<Customer> customerList()  {
         ArrayList<Customer> customerList = new ArrayList<>();
-        String sql = "select * from customers order by customer_no asc";
+        String sql = "select * from customers where userId <> 'admin' order by customer_no asc";
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
             Connection con = pcon.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);

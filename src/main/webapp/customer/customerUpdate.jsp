@@ -19,7 +19,7 @@
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
 <div class="logo-container">
-    <a href="main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
 <h1>회원정보 변경</h1>
 <div class="container">

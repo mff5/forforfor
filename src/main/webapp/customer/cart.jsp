@@ -5,13 +5,13 @@
     <c:when test="${result}">
         <script>
             alert("${productName} 이/가 카트에 추가되었습니다.");
-            window.location.href = '${pageContext.request.contextPath}/homepage/views/all.jsp';
+            window.location.href = '${pageContext.request.contextPath}/views/all.jsp';
         </script>
     </c:when>
     <c:otherwise>
         <script>
             alert("카트 추가 실패");
-            window.location.href = '${pageContext.request.contextPath}/homepage/views/all.jsp';
+            window.location.href = '${pageContext.request.contextPath}/views/all.jsp';
         </script>
     </c:otherwise>
 </c:choose>

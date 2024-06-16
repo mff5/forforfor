@@ -17,7 +17,7 @@
         </div>
         <div>
             <button type="submit">회원탈퇴</button>
-            <button type="button" onclick="window.location='main.jsp'">취소</button>
+            <button type="button" onclick="window.location='/homepage/views/main.jsp'">취소</button>
         </div>
     </form>
 </div>

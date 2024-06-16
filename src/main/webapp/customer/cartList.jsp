@@ -1,11 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="/views/header.jsp"/>
-<style>
-    body {
-        background-color: #f0f0f0;
-    }
-</style>
+
+<link rel="stylesheet" href="<c:url value='/css/cartList.css'/>">
 
 <div class="container">
     <div class="header">
@@ -35,7 +32,7 @@
                 <c:set var="totalAmount" value="${totalAmount + c.price}"/>
                 <tr>
                     <td>
-                            ${number+=1}
+                            ${c.cartNo}
                     </td>
                     <td>
                         <img src="${c.imgURL}" alt="대체문자" class="pImg">

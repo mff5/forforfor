@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="logo-container">
-    <a href="${pageContext.request.contextPath}/jsp/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
 <div class="login-container">
     <form class="login-form" action="${pageContext.request.contextPath}/common?action=loginCheck" method="post" onsubmit="return checkIdPw(event)">

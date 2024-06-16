@@ -1,9 +1,12 @@
+<%@ page import="homepage.dao.ProductDAO" %>
+<%@ page import="homepage.model.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
 <%
     String loginId = (String) session.getAttribute("loginId");
     ProductDAO dao = ProductDAO.getInstance();
-    ArrayList<ProductVO> productList = dao.getProductList();
+    ArrayList<Product> productList = dao.getProductList();
 
     request.setAttribute("loginId", loginId);
     request.setAttribute("productList", productList);
@@ -15,13 +18,13 @@
     <title>Title</title>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/all.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js" charset="utf-8"></script>
 </head>
 <body>
 <header>
     <div class="header-container">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/jsp/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+            <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
         </div>
         <c:choose>
             <c:when test="${loginId == null}">
@@ -42,7 +45,7 @@
             <c:otherwise>
                 <ul class="auth-menu">
                     <li><a href="#" onclick="qna()">고객센터</a></li>
-                    <li><a href="#" onclick="goCart()">Cart</a></li>
+                    <li><a href="#" onclick="cartList()">Cart</a></li>
                     <li><a href="#" onclick="modify()">회원정보변경</a></li>
                     <li><a href="#" onclick="logout()">로그아웃</a></li>
                     <li><a href="#" onclick="del()">회원탈퇴</a></li>

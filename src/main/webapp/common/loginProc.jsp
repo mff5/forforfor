@@ -17,13 +17,13 @@
     <c:when test="${result==0}">
         <script>
             alert("비밀번호가 틀렸습니다.");
-            window.location.href = "${pageContext.request.contextPath}/customer/loginForm.jsp";
+            window.location.href = "${pageContext.request.contextPath}/common/loginForm.jsp";
         </script>
     </c:when>
     <c:otherwise>
         <script>
             alert("아이디가 존재하지 않습니다");
-            window.location.href = "${pageContext.request.contextPath}/customer/loginForm.jsp";
+            window.location.href = "${pageContext.request.contextPath}/common/loginForm.jsp";
         </script>
     </c:otherwise>
 </c:choose>

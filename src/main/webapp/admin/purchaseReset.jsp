@@ -3,13 +3,13 @@
 
 <c:if test="${result}">
     <script>
-        alert("삭제성공");
-        window.location.href = "/homepage/admin?action=productList";
+        alert("결제목록 초기화 성공");
+        window.location.href = <c:url value="/admin/purchaseList.jsp"/>
     </script>
 </c:if>
 <c:if test="${!result}">
     <script>
-        alert("삭제실패");
-        window.location.href = "/homepage/admin?action=productList";
+        alert("결제목록 초기화 실패");
+        window.location.href = <c:url value="/admin/purchaseList.jsp"/>
     </script>
 </c:if>

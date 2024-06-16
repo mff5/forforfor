@@ -76,6 +76,9 @@ public class CustomerController extends HttpServlet {
             case "purchase":
                 purchase(request, response);
                 break;
+            case "insertPurchase":
+                insertPurchase(request, response);
+                break;
             case "customerForm":
                 customerForm(request, response);
                 break;
@@ -216,9 +219,12 @@ public class CustomerController extends HttpServlet {
 
     private void insertCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productNo = Integer.parseInt(request.getParameter("productNo"));
+
         Product product = productDAO.getProduct(productNo);
         String productName = product.getProductName();
+
         boolean result = cartDAO.insertCart(product);
+
         request.setAttribute("result", result);
         request.setAttribute("productName", productName);
 
@@ -278,6 +284,9 @@ public class CustomerController extends HttpServlet {
         request.getRequestDispatcher("/customer/cartReset.jsp").forward(request, response);
     }
     private void purchase(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/customer/purchase.jsp").forward(request, response);
+    }
+    private void insertPurchase(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String meth = request.getParameter("meth");
         String loginId = (String) session.getAttribute("loginId");

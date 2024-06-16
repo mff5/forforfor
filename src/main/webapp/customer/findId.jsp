@@ -12,7 +12,6 @@
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
     <link href="${pageContext.request.contextPath}/css/findId.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/findId.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

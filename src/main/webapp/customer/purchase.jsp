@@ -21,7 +21,7 @@
     <button onclick="selectPaymentMethod('모바일 결제')">3. 모바일 결제</button>
     <button onclick="selectPaymentMethod('기프트 카드 결제')">4. 기프트 카드 결제</button>
     <button onclick="selectPaymentMethod('QR 코드 결제')">5. QR 코드 결제</button>
-    <button class="cart-button" onclick="goCart()">카트로 돌아가기</button>
+    <button class="cart-button" onclick="cartList()">카트로 돌아가기</button>
 </div>
 </body>
 </html>
