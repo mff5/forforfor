@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp"/>
+
+<link rel="stylesheet" href="<c:url value='/css/main.css'/>">
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         function initializeSlideshow() {
@@ -56,10 +59,10 @@
     <section class="slideshow-container">
         <div class="slideshow">
             <div class="slideshow-slides">
-                <a href="#"><img src="${pageContext.request.contextPath}/img/brush1.jpg" alt="Brush 1"></a>
-                <a href="#"><img src="${pageContext.request.contextPath}/img/brush2.jpg" alt="Brush 2"></a>
-                <a href="#"><img src="${pageContext.request.contextPath}/img/brush3.jpg" alt="Brush 3"></a>
-                <a href="#"><img src="${pageContext.request.contextPath}/img/brush4.jpg" alt="Brush 4"></a>
+                <a href="#"><img src="<c:url value="/brush1.jpg"/>" alt="Brush 1"></a>
+                <a href="#"><img src="<c:url value="/brush2.jpg"/>"></a>
+                <a href="#"><img src="<c:url value="/brush3.jpg"/>"></a>
+                <a href="#"><img src="<c:url value="/brush4.jpg"/>"></a>
             </div>
             <div class="slideshow-nav">
                 <a href="#" id="slide-left"><i class="fa-solid fa-angles-left"></i></a>
@@ -92,8 +95,6 @@
             </table>
         </c:if>
         <div class="new-items-container">
-
         </div>
     </section>
-
 <jsp:include page="footer.jsp"/>

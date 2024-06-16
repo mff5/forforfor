@@ -10,5 +10,5 @@ function goDelete(postNo, pageNum) {
     document.location.href = '/homepage/common?action=boardDeleteForm&postNo=' + encodeURIComponent(postNo) + '&pageNum=' + encodeURIComponent(pageNum);
 }
 function goList(pageNum) {
-    document.location.href = 'boardList.jsp?pageNum=' + encodeURIComponent(pageNum);
+    document.location.href = '/homepage/common?action=boardList&pageNum=' + encodeURIComponent(pageNum);
 }

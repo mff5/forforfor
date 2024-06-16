@@ -19,7 +19,6 @@
     <title>Title</title>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js" charset="utf-8"></script>
 </head>
 <body onload="">
@@ -47,7 +46,7 @@
             <c:otherwise>
                 <ul class="auth-menu">
                     <li><a href="#" onclick="qna()">고객센터</a></li>
-                    <li><a href="#" onclick="cart()">Cart</a></li>
+                    <li><a href="#" onclick="cartList()">Cart</a></li>
                     <li><a href="#" onclick="modify()">회원정보변경</a></li>
                     <li><a href="#" onclick="logout()">로그아웃</a></li>
                     <li><a href="#" onclick="del()">회원탈퇴</a></li>
@@ -57,8 +56,8 @@
     </div>
     <nav>
         <ul class="main-menu">
-            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/all.jsp">전체</a></li>
+            <li><a href="${pageContext.request.contextPath}/views/main.jsp">Home</a></li>
+            <li><a href="${pageContext.request.contextPath}/views/all.jsp">전체</a></li>
             <li>
                 <a href="#">Eyelash</a>
                 <div class="dropdown-content">

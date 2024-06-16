@@ -52,6 +52,18 @@ public class CommonController extends HttpServlet {
             case "logout" :
                 logout(request, response);
                 break;
+            case "boardUpdateForm" :
+                boardUpdateForm(request, response);
+                break;
+            case "updateBoard" :
+                updateBoard(request, response);
+                break;
+            case "boardDeleteForm":
+                boardDeleteForm(request, response);
+                break;
+            case "deleteBoard" :
+                deleteBoard(request, response);
+                break;
         }
     }
     private void loginCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,6 +80,41 @@ public class CommonController extends HttpServlet {
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getRequestDispatcher("/common/logout.jsp").forward(request, response);
+    }
+
+    private void updateBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userId = request.getParameter("userId");
+        int postNo = Integer.parseInt(request.getParameter("postNo"));
+        String title = request.getParameter("title");
+        String email = request.getParameter("email");
+        String postContent = request.getParameter("postContent");
+        String password = request.getParameter("password");
+
+        Board board = new Board();
+        board.setUserId(userId);
+        board.setPostNo(postNo);
+        board.setTitle(title);
+        board.setEmail(email);
+        board.setPostContent(postContent);
+        board.setPassword(password);
+
+        boolean result = boardDAO.updateBoard(board);
+
+        request.setAttribute("result", result);
+
+        request.getRequestDispatcher("/common/boardUpdateProc.jsp").forward(request, response);
+    }
+    private void deleteBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int postNo = Integer.parseInt(request.getParameter("postNo"));
+        String password = request.getParameter("password");
+
+        boolean result = boardDAO.deleteBoard(postNo, password);
+
+        request.setAttribute("postNo", postNo);
+
+        request.setAttribute("result", result);
+
+        request.getRequestDispatcher("/common/boardDeleteProc.jsp").forward(request, response);
     }
     private void boardContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -95,12 +142,32 @@ public class CommonController extends HttpServlet {
     }
     private void boardForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
         request.getRequestDispatcher("/common/boardForm.jsp").forward(request, response);
+    }
+    private void boardUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int postNo = Integer.parseInt(request.getParameter("postNo"));
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+
+        request.setAttribute("postNo", postNo);
+        request.setAttribute("pageNum", pageNum);
+
+        Board board = boardDAO.getBoard(postNo);
+
+        request.setAttribute("board", board);
+
+        request.getRequestDispatcher("/common/boardUpdateForm.jsp").forward(request, response);
     }
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/common/loginForm.jsp").forward(request, response);
+    }
+    private void boardDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int postNo = Integer.parseInt(request.getParameter("postNo"));
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+
+        request.setAttribute("postNo", postNo);
+        request.setAttribute("pageNum", pageNum);
+        request.getRequestDispatcher("/common/boardDeleteForm.jsp").forward(request, response);
     }
 
     private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

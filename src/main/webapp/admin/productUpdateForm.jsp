@@ -1,32 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>상품 등록</title>
+    <title>상품 수정</title>
     <script language="javascript" src="${pageContext.request.contextPath}/js/product.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product.css">
-    <script src="../js/product.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productModify.css">
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="logo-container">
-    <a href="main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
-<h1>상품 등록</h1>
+<h1>상품 수정</h1>
 <div class="container">
-    <form id="oneone" action="../jspProc/productProc.jsp" method="post" name="productform">
+    <form id="oneone" action="${pageContext.request.contextPath}/admin?action=updateProduct" method="post" name="productform">
         <table>
             <tr>
-                <td class="td1"><label for="imgURL">사진 주소</label><span style="color: red ;font-size: 20px">*</span></td>
+                <td class="td1"><label for="productNo">상품 번호</label><span style="color: red; font-size: 20px">*</span></td>
                 <td class="td2">
-                    <input type="text" name="imgURL" id="imgURL" required>
+                    <input type="text" name="productNo" id="productNo" value="${product.productNo}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1"><label for="imgURL">사진 주소</label><span style="color: red; font-size: 20px">*</span></td>
+                <td class="td2">
+                    <input type="text" name="imgURL" id="imgURL" value="${product.imgURL}" required>
                     <button type="button" class="button-small" onclick="triggerFileInput()">파일 선택</button>
                     <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)">
                 </td>
             </tr>
             <tr>
-                <td class="td1"><label for="category">상품 분류</label><span style="color: red ;font-size: 20px">*</span></td>
+                <td class="td1"><label for="category">상품 분류</label><span style="color: red; font-size: 20px">*</span></td>
                 <td class="td2">
                     <select name="category" id="category" required>
                         <optgroup label="Eyelash">
@@ -51,11 +56,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="td1"><label for="productName">상품명</label><span style="color: red ;font-size: 20px">*</span></td>
-                <td class="td2"><input type="text" name="productName" id="productName" required></td>
+                <td class="td1"><label for="productName">상품명</label><span style="color: red; font-size: 20px">*</span></td>
+                <td class="td2"><input type="text" name="productName" id="productName" value="${prouct.productName}" required></td>
             </tr>
-
-
             <tr>
                 <td class="td1"><label for="originalPrice">정가</label><span style="color: red ;font-size: 20px">*</span></td>
                 <td class="td2">
@@ -83,20 +86,14 @@
                     </div>
                 </td>
             </tr>
-
-
-
-
-
-
-
             <tr>
-                <td class="td1"><label for="stock">재고</label><span style="color: red ;font-size: 20px">*</span></td>
-                <td class="td2"><input type="text" name="stock" id="stock"></td>
+                <td class="td1"><label for="stock">재고</label><span style="color: red; font-size: 20px">*</span></td>
+                <td class="td2"><input type="text" name="stock" id="stock" value="${product.stock}" required></td>
             </tr>
             <tr>
                 <td colspan="2" class="center-button">
-                    <button type="submit" onclick="allCheck(event)">상품 등록</button>
+                    <button type="submit" onclick="allCheck(event)">상품 수정</button>
+                    <button type="button" onclick="window.location.href='/homepage/admin?action=productList'">목록</button>
                 </td>
             </tr>
         </table>

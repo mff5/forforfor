@@ -6,16 +6,15 @@
     <title>상품 등록</title>
     <script language="javascript" src="${pageContext.request.contextPath}/js/product.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product.css">
-    <script src="../js/product.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="logo-container">
-    <a href="main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
 </div>
 <h1>상품 등록</h1>
 <div class="container">
-    <form id="oneone" action="../jspProc/productProc.jsp" method="post" name="productform">
+    <form id="oneone" action="${pageContext.request.contextPath}/admin?action=insertProduct" method="post" name="productform">
         <table>
             <tr>
                 <td class="td1"><label for="imgURL">사진 주소</label><span style="color: red ;font-size: 20px">*</span></td>
@@ -83,21 +82,16 @@
                     </div>
                 </td>
             </tr>
-
-
-
-
-
-
-
             <tr>
                 <td class="td1"><label for="stock">재고</label><span style="color: red ;font-size: 20px">*</span></td>
-                <td class="td2"><input type="text" name="stock" id="stock"></td>
+                <td class="td2"><input type="text" name="stock" id="stock" required></td>
             </tr>
             <tr>
                 <td colspan="2" class="center-button">
-                    <button type="submit" onclick="allCheck(event)">상품 등록</button>
+                    <button type="submit">상품 등록</button>
+                    <button type="button" onclick="window.location.href='/homepage/admin?action=productList'">목록</button>
                 </td>
+
             </tr>
         </table>
     </form>

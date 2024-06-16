@@ -122,3 +122,12 @@ span.asdf {
     margin-left: 5px;
     font-size: 1em;
 }
+.logo-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logo {
+    font-size: 4em;
+    color: #ff69b4;
+}

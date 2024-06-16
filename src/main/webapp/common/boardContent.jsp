@@ -65,16 +65,14 @@
 
                 <c:if test="${loginId eq 'admin'}">
                     <button type="button"
-                            onclick="goReply(<${board.postNo},${board.refNo},${board.stepNo},${board.depthLevel})">
-                        답글쓰기
-                    </button>
+                            onclick="goReply(${board.postNo},${board.refNo},${board.stepNo},${board.depthLevel})">답글쓰기</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                 </c:if>
 
                 <c:if test="${loginId eq board.userId}">
-                    <button type="button" onclick="goModify(${postNo},${pageNum})">수정하기</button>
+                    <button type="button" onclick="goModify(${board.postNo},${pageNum})">수정하기</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" onclick="goDelete(${postNo},${pageNum})">삭제하기</button>
+                    <button type="button" onclick="goDelete(${board.postNo},${pageNum})">삭제하기</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                 </c:if>
             </td>

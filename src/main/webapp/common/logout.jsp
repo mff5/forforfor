@@ -21,7 +21,7 @@
     <c:otherwise>
         <script>
             alert("로그아웃 실패");
-            window.location.href='main.jsp';
+            window.location.href='/homepage/views/main.jsp';
         </script>
     </c:otherwise>
 </c:choose>
