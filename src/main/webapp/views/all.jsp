@@ -55,8 +55,8 @@
     </div>
     <nav>
         <ul class="main-menu">
-            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/all.jsp">전체</a></li>
+            <li><a href="${pageContext.request.contextPath}/views/main.jsp">Home</a></li>
+            <li><a href="${pageContext.request.contextPath}/views/all.jsp">전체</a></li>
             <li>
                 <a href="#">Eyelash</a>
                 <div class="dropdown-content">

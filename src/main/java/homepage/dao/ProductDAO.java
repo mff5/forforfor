@@ -146,7 +146,6 @@ public class ProductDAO {
 
                 productList.add(product);
             }
-
         } catch (Exception e)   {
             e.printStackTrace();
         }
