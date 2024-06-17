@@ -94,9 +94,9 @@
         <span>총<b style="color: #504EB3"><%=productList.size()%></b>건</span>
         <div style="text-align: right">
             <a href="#">판매량순</a> |
+            <a href="#">할인율순</a> |
             <a href="#">낮은가격순</a> |
             <a href="#">높은가격순</a> |
-            <a href="#">상품후기순</a> |
             <a href="#">신상품순</a>
         </div>
         <div>
