@@ -135,9 +135,6 @@ public class CustomerController extends HttpServlet {
         request.getRequestDispatcher("/customer/customerProc.jsp").forward(request, response);
     }
 
-
-
-
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");
         String userPw = request.getParameter("userPw");
@@ -296,11 +293,13 @@ public class CustomerController extends HttpServlet {
         int totalPrice = 0;
         ArrayList<Cart> cartList = cartDAO.cartList();
 
+        ArrayList<Integer> productNos = new ArrayList<>();
         for (Cart c : cartList) {
             totalPrice += c.getPrice();
+            productNos.add(c.getProductNo());
         }
 
-        boolean result = cartDAO.purchase(meth, loginId, totalPrice);
+        boolean result = cartDAO.purchase(productNos, meth, loginId, totalPrice);
 
         request.setAttribute("result", result);
 

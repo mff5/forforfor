@@ -2,6 +2,7 @@ package homepage.model;
 
 public class Cart {
     private int cartNo;
+    private int productNo;
     private String imgURL;
     private String category;
     private String productName;
@@ -13,6 +14,14 @@ public class Cart {
 
     public void setCartNo(int cartNo) {
         this.cartNo = cartNo;
+    }
+
+    public int getProductNo() {
+        return productNo;
+    }
+
+    public void setProductNo(int productNo) {
+        this.productNo = productNo;
     }
 
     public String getImgURL() {

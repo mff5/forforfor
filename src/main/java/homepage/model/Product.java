@@ -13,6 +13,7 @@ public class Product {
     private Date createdDate;
     private Date updatedDate;
     private int stock;
+    private int sales;
 
     public int getProductNo() {
         return productNo;
@@ -92,5 +93,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
     }
 }

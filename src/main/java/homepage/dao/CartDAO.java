@@ -125,6 +125,7 @@ public class CartDAO {
                 while (rs.next()) {
                     Cart cart = new Cart();
                     cart.setCartNo(rs.getInt("cart_no"));
+                    cart.setProductNo(rs.getInt("product_no"));
                     cart.setImgURL(rs.getString("imgURL"));
                     cart.setCategory(rs.getString("category"));
                     cart.setProductName(rs.getString("productName"));
@@ -156,6 +157,7 @@ public class CartDAO {
                 while (rs.next()) {
                     Cart cart = new Cart();
                     cart.setCartNo(rs.getInt("cart_no"));
+                    cart.setProductNo(rs.getInt("product_no"));
                     cart.setImgURL(rs.getString("imgURL"));
                     cart.setCategory(rs.getString("category"));
                     cart.setProductName(rs.getString("productName"));
@@ -173,27 +175,42 @@ public class CartDAO {
         return cartList;
     }
 
-    public boolean purchase( String meth, String loginId, int totalPrice)   {
+    public boolean purchase(ArrayList<Integer> productNos, String meth, String loginId, int totalPrice)   {
         boolean result = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
-        Connection con = pcon.getConnection();
-        CallableStatement cstmt = con.prepareCall("{call insert_purchase(?,?,?)}")) {
+        Connection con = pcon.getConnection()) {
             con.setAutoCommit(false);
-            cstmt.setString(1, meth);
-            cstmt.setString(2, loginId);
-            cstmt.setInt(3, totalPrice);
 
-            if (cstmt.executeUpdate() == 1) {
+            boolean success = true;
+
+            try (CallableStatement cstmtReset = con.prepareCall("{call reset_cart()}")) {
+                cstmtReset.executeUpdate();
+            }
+
+            for (int productNo : productNos)    {
+                try(CallableStatement cstmt = con.prepareCall("{call insert_purchase(?,?,?,?)}")) {
+                    cstmt.setInt(1, productNo);
+                    cstmt.setString(2, meth);
+                    cstmt.setString(3, loginId);
+                    cstmt.setInt(4, totalPrice);
+
+                    if (cstmt.executeUpdate() !=1)  {
+                        success = false;
+                        break;
+                    }
+                }
+            }
+            if (success)    {
                 result = true;
                 con.commit();
             } else {
                 con.rollback();
             }
 
+
         } catch (Exception e)   {
             e.printStackTrace();
         }
         return result;
     }
-
 }
