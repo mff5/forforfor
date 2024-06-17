@@ -6,7 +6,14 @@
 <%
     String loginId = (String) session.getAttribute("loginId");
     ProductDAO dao = ProductDAO.getInstance();
-    ArrayList<Product> productList = dao.getProductList();
+
+    String sortBy = request.getParameter("sortBy");
+
+    if (sortBy == null) {
+        sortBy = "created_date";
+    }
+
+    ArrayList<Product> productList = dao.productList(sortBy);
 
     request.setAttribute("loginId", loginId);
     request.setAttribute("productList", productList);
@@ -93,11 +100,11 @@
         <h2>전체</h2><br><br>
         <span>총<b style="color: #504EB3"><%=productList.size()%></b>건</span>
         <div style="text-align: right">
-            <a href="#">판매량순</a> |
-            <a href="#">할인율순</a> |
-            <a href="#">낮은가격순</a> |
-            <a href="#">높은가격순</a> |
-            <a href="#">신상품순</a>
+            <a href="${pageContext.request.contextPath}/views/all.jsp?sortBy=sales">판매량순</a> |
+            <a href="${pageContext.request.contextPath}/views/all.jsp?sortBy=discount">할인율순</a> |
+            <a href="${pageContext.request.contextPath}/views/all.jsp?sortBy=priceAsc">낮은가격순</a> |
+            <a href="${pageContext.request.contextPath}/views/all.jsp?sortBy=price">높은가격순</a> |
+            <a href="${pageContext.request.contextPath}/views/all.jsp?sortBy=created_date">신상품순</a>
         </div>
         <div>
             <c:choose>

@@ -6,10 +6,7 @@ import homepage.model.Cart;
 import homepage.model.Product;
 
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CartDAO {
@@ -113,6 +110,7 @@ public class CartDAO {
         }
         return result;
     }
+
     public ArrayList<Cart> cartList() {
         ArrayList<Cart> cartList = new ArrayList<>();
         String sql = "select * from cart order by cart_no";
@@ -122,23 +120,24 @@ public class CartDAO {
              PreparedStatement pstmt = con.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
-                while (rs.next()) {
-                    Cart cart = new Cart();
-                    cart.setCartNo(rs.getInt("cart_no"));
-                    cart.setProductNo(rs.getInt("product_no"));
-                    cart.setImgURL(rs.getString("imgURL"));
-                    cart.setCategory(rs.getString("category"));
-                    cart.setProductName(rs.getString("productName"));
-                    cart.setPrice(rs.getInt("price"));
+            while (rs.next()) {
+                Cart cart = new Cart();
+                cart.setCartNo(rs.getInt("cart_no"));
+                cart.setProductNo(rs.getInt("product_no"));
+                cart.setImgURL(rs.getString("imgURL"));
+                cart.setCategory(rs.getString("category"));
+                cart.setProductName(rs.getString("productName"));
+                cart.setPrice(rs.getInt("price"));
 
-                    cartList.add(cart);
-                }
+                cartList.add(cart);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return cartList;
     }
+
     public ArrayList<Cart> cartList2(int start, int end) {
         ArrayList<Cart> cartList = new ArrayList<>();
         String sql = "select * from cart order by cart_no asc offset ? rows fetch next ? rows only";
@@ -175,40 +174,33 @@ public class CartDAO {
         return cartList;
     }
 
-    public boolean purchase(ArrayList<Integer> productNos, String meth, String loginId, int totalPrice)   {
+    public boolean purchase(ArrayList<Integer> productNos, String meth, String loginId, int totalPrice) {
         boolean result = false;
-        try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
-        Connection con = pcon.getConnection()) {
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             CallableStatement cstmt = con.prepareCall("{call insert_purchase(?,?,?)}")) {
             con.setAutoCommit(false);
 
-            boolean success = true;
 
-            try (CallableStatement cstmtReset = con.prepareCall("{call reset_cart()}")) {
-                cstmtReset.executeUpdate();
-            }
-
-            for (int productNo : productNos)    {
-                try(CallableStatement cstmt = con.prepareCall("{call insert_purchase(?,?,?,?)}")) {
-                    cstmt.setInt(1, productNo);
-                    cstmt.setString(2, meth);
-                    cstmt.setString(3, loginId);
-                    cstmt.setInt(4, totalPrice);
-
-                    if (cstmt.executeUpdate() !=1)  {
-                        success = false;
-                        break;
-                    }
+            for (int p : productNos) {
+                try(CallableStatement cstmt2 = con.prepareCall("{call update_ss(?)}")) {
+                    cstmt2.setInt(1, p);
+                    cstmt2.executeUpdate();
                 }
             }
-            if (success)    {
+
+
+            cstmt.setString(1, meth);
+            cstmt.setString(2, loginId);
+            cstmt.setInt(3, totalPrice);
+
+            if (cstmt.executeUpdate() == 1) {
                 result = true;
                 con.commit();
             } else {
                 con.rollback();
             }
-
-
-        } catch (Exception e)   {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

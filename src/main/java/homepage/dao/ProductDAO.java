@@ -124,6 +124,57 @@ public class ProductDAO {
         }
         return product;
     }
+    public ArrayList<Product> productList(String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales";
+                break;
+            case "discount":
+                sortColumn = "discount";
+                break;
+            case "priceAsc":
+                sortColumn = "price ASC";
+                break;
+            case "price":
+                sortColumn = "price DESC";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date DESC";
+                break;
+        }
+        
+        String sql = "SELECT * FROM products WHERE stock > 0 ORDER BY " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNo(rs.getInt("product_no"));
+                product.setImgURL(rs.getString("imgURL"));
+                product.setCategory(rs.getString("category"));
+                product.setProductName(rs.getString("productName"));
+                product.setOriginalPrice(rs.getInt("originalPrice"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setCreatedDate(rs.getDate("created_date"));
+                product.setUpdatedDate(rs.getDate("updated_date"));
+                product.setStock(rs.getInt("stock"));
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
     public ArrayList<Product> getProductList()  {
         ArrayList<Product> productList = new ArrayList<>();
 
