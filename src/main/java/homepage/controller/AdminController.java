@@ -62,6 +62,9 @@ public class AdminController extends HttpServlet {
             case "productUpdateForm" :
                 productUpdateForm(request, response);
                 break;
+            case "productReset" :
+                productReset(request, response);
+                break;
             case "updateProduct" :
                 updateProduct(request, response);
                 break;
@@ -76,6 +79,13 @@ public class AdminController extends HttpServlet {
                 break;
 
         }
+    }
+    private void productReset(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean result = productDAO.resetProduct();
+
+        request.setAttribute("result", result);
+
+        request.getRequestDispatcher("/admin/productResetProc.jsp").forward(request, response);
     }
     private void purchaseReset(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean result = purchaseDAO.resetPurchase();
