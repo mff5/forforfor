@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 찾기</title>
-    <link href="${pageContext.request.contextPath}/css/findPw.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/findPw.js"></script>
+    <link href="${pageContext.request.contextPath}/css/findPwForm.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/findPwForm.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

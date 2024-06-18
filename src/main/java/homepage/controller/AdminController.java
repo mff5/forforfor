@@ -82,7 +82,7 @@ public class AdminController extends HttpServlet {
 
         request.setAttribute("result", result);
 
-        request.getRequestDispatcher("/admin/purchaseReset.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/purchaseResetProc.jsp").forward(request, response);
     }
     private void purchaseList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -133,7 +133,7 @@ public class AdminController extends HttpServlet {
     private void customerReset(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean result = customerDAO.resetCustomer();
         request.setAttribute("result", result);
-        request.getRequestDispatcher("/admin/customerReset.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/customerResetProc.jsp").forward(request, response);
     }
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");
@@ -258,6 +258,6 @@ public class AdminController extends HttpServlet {
 
         request.setAttribute("result", result);
 
-        request.getRequestDispatcher("/admin/productDelete.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/productDeleteProc.jsp").forward(request, response);
     }
 }

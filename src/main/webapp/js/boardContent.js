@@ -3,7 +3,7 @@ function goReply(postNo, refNo, stepNo, depthLevel) {
     +'&stepNo=' + encodeURIComponent(stepNo) + '&depthLevel=' + encodeURIComponent(depthLevel);
 }
 
-function goModify(postNo, pageNum) {
+function goUpdate(postNo, pageNum) {
     document.location.href = '/homepage/common?action=boardUpdateForm&postNo=' + encodeURIComponent(postNo) +'&pageNum=' + encodeURIComponent(pageNum);
 }
 function goDelete(postNo, pageNum) {

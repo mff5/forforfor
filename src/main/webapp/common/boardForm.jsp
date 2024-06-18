@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>문의하기</title>
-    <link href="${pageContext.request.contextPath}/css/board.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/boardForm.css" rel="stylesheet" type="text/css"/>
     <script src="${pageContext.request.contextPath}/js/board.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>

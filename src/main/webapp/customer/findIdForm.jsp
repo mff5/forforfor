@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
-    <link href="${pageContext.request.contextPath}/css/findId.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/findIdForm.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

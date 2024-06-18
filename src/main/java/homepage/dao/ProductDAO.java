@@ -130,24 +130,24 @@ public class ProductDAO {
         String sortColumn;
         switch (sortBy) {
             case "sales":
-                sortColumn = "sales";
+                sortColumn = "sales desc";
                 break;
             case "discount":
-                sortColumn = "discount";
+                sortColumn = "discount desc";
                 break;
             case "priceAsc":
-                sortColumn = "price ASC";
+                sortColumn = "price asc";
                 break;
             case "price":
-                sortColumn = "price DESC";
+                sortColumn = "price desc";
                 break;
             case "created_date":
             default:
-                sortColumn = "created_date DESC";
+                sortColumn = "created_date desc";
                 break;
         }
         
-        String sql = "SELECT * FROM products WHERE stock > 0 ORDER BY " + sortColumn;
+        String sql = "select * from products where stock > 0 order by " + sortColumn;
 
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();

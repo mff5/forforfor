@@ -1,5 +1,28 @@
+/* boardList.css 내용 */
+/* boardModify.css 내용 */
+/* cartList.css 내용 */
+/* common.css 내용 */
+/* customer.css 내용 */
+/* customerDelete.css 내용 */
+/* customerList.css 내용 */
+/* findId.css 내용 */
+/* findIdProc.css 내용 */
+/* findPw.css 내용 */
+/* findPwProc.css 내용 */
+/* idCheck.css 내용 */
+/* list.css 내용 */
+/* login.css 내용 */
+/* main.css 내용 */
+/* product.css 내용 */
+/* productDelete.css 내용 */
+/* productList.css 내용 */
+/* productUpdateForm.css 내용 */
+/* purchase.css 내용 */
+
+/* Custom CSS */
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -7,6 +30,17 @@ body {
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
 }
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 4em;
+    color: #ff69b4;
+}
+
 .delete-container {
     background-color: #fff;
     padding: 30px;
@@ -14,15 +48,18 @@ body {
     border-radius: 8px;
     text-align: center;
 }
+
 .delete-container h2 {
     margin-bottom: 20px;
     color: #ff69b4;
 }
+
 .delete-form {
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
 }
+
 .delete-form input[type="password"],
 .delete-form button {
     width: calc(100% - 20px);
@@ -32,11 +69,13 @@ body {
     border-radius: 5px;
     font-size: 1em;
 }
+
 .delete-form button {
     background-color: #ff69b4;
     color: #fff;
     cursor: pointer;
 }
+
 .delete-form button:hover {
     background-color: #ff1493;
 }

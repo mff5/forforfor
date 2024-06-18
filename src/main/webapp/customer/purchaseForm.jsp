@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>결제창</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/purchase.css">
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/common.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

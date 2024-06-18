@@ -1,6 +1,6 @@
 body {
     display: flex;
-    flex-direction: column; /* 추가 */
+    flex-direction: column; /* 占쌩곤옙 */
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -11,7 +11,7 @@ body {
 
 .logo-container {
     text-align: center;
-    margin-bottom: 20px; /* 로고와 로그인 컨테이너 사이 간격 */
+    margin-bottom: 20px;
 }
 
 .logo {

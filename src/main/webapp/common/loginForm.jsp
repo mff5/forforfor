@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-    <script src="${pageContext.request.contextPath}/js/login.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginForm.css">
+    <script src="${pageContext.request.contextPath}/js/loginForm.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="euc-kr">
     <title>게시판 글수정</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/boardModify.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/boardUpdateForm.css">
     <script language="JavaScript" src="${pageContext.request.contextPath}/js/board.js"></script>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>

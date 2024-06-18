@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>상품 수정</title>
-    <script language="javascript" src="${pageContext.request.contextPath}/js/product.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productModify.css">
+    <script language="javascript" src="${pageContext.request.contextPath}/js/productForm.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productUpdateForm.css">
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>

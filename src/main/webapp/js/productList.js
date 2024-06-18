@@ -1,4 +1,3 @@
-
 function goProductModify(productNo) {
     window.location.href = '/homepage/admin?action=productUpdateForm&productNo='+encodeURIComponent(productNo);
 }

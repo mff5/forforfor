@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>회원탈퇴</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customerDelete.css">
-    <script src="${pageContext.request.contextPath}/js/delete.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customerDeleteForm.css">
+    <script src="${pageContext.request.contextPath}/js/customerDeleteForm.js"></script>
+    <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
 </head>
 <body onload="begin()">
+<div class="logo-container">
+    <a href="${pageContext.request.contextPath}/views/main.jsp"><i class="fa-brands fa-html5 logo"></i></a>
+</div>
 <div class="delete-container">
     <form name="delete" method="post" action="${pageContext.request.contextPath}/customer?action=deleteCustomer" class="delete-form" onsubmit="return checkIt()">
         <h2>회원 탈퇴</h2>

@@ -70,7 +70,7 @@
                 </c:if>
 
                 <c:if test="${loginId eq board.userId}">
-                    <button type="button" onclick="goModify(${board.postNo},${pageNum})">수정하기</button>
+                    <button type="button" onclick="goUpdate(${board.postNo},${pageNum})">수정하기</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" onclick="goDelete(${board.postNo},${pageNum})">삭제하기</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;

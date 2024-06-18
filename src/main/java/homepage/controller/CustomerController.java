@@ -225,7 +225,7 @@ public class CustomerController extends HttpServlet {
         request.setAttribute("result", result);
         request.setAttribute("productName", productName);
 
-        request.getRequestDispatcher("/customer/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/cartProc.jsp").forward(request, response);
     }
 
     private void cartList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -272,16 +272,16 @@ public class CustomerController extends HttpServlet {
         boolean result = cartDAO.deleteCart(cartNo);
         request.setAttribute("result", result);
 
-        request.getRequestDispatcher("/customer/cartDelete.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/cartDeleteProc.jsp").forward(request, response);
     }
     private void resetCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean result = cartDAO.resetCart();
         request.setAttribute("result", result);
 
-        request.getRequestDispatcher("/customer/cartReset.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/cartResetProc.jsp").forward(request, response);
     }
     private void purchase(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/customer/purchase.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/purchaseForm.jsp").forward(request, response);
     }
     private void insertPurchase(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

@@ -20,14 +20,14 @@
             <li>${id}</li>
         </c:forEach>
         </ul>
-        <button class="back-button" onclick="window.location.href='${pageContext.request.contextPath}/customer/findPw.jsp'">비밀번호 찾기</button>
+        <button class="back-button" onclick="window.location.href='${pageContext.request.contextPath}/customer/findPwForm.jsp'">비밀번호 찾기</button>
     </c:if>
 
 
     <c:if test="${empty ids}">
         <h2>검색된 아이디가 없습니다.</h2>
     </c:if>
-    <button class="back-button" onclick="window.location.href='${pageContext.request.contextPath}/customer/findId.jsp'">돌아가기</button>
+    <button class="back-button" onclick="window.location.href='${pageContext.request.contextPath}/customer/findIdForm.jsp'">돌아가기</button>
 </div>
 </body>
 </html>

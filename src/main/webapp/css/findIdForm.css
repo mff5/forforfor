@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .logo-container {
     text-align: center;
     margin-top: 20px;
@@ -29,17 +30,6 @@ h1 {
     padding: 20px 40px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-}
-
-.info-text {
-    width: 100%;
-    border-top: 1px solid #ff69b4;
-    border-bottom: 1px solid #ff69b4;
-    padding: 10px 0;
-    margin: 10px 0;
-    text-align: center;
-    font-size: 1em;
-    color: #ff69b4;
 }
 
 form {
@@ -72,8 +62,6 @@ td {
 }
 
 input[type="text"],
-input[type="email"],
-input[type="password"],
 button {
     width: calc(100% - 16px);
     padding: 8px;
@@ -97,55 +85,10 @@ button:hover {
     background-color: #ff1493;
 }
 
-.button-small {
-    margin-left: 5px;
-    width: auto;
-    font-size: 0.9em;
-}
-
-span.asdf {
-    font-size: 0.9em;
-    display: block;
-    margin-top: 3px;
-    color: #555;
-}
-
-.checkbox-label {
-    display: inline-block;
-    margin-right: 5px;
-    font-size: 1em;
-}
-
 .center-button {
     text-align: center;
     border: none;
 }
-
-.email-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.email-group input[type="email"] {
-    flex: 1;
-}
-
-.phone-input select,
-.phone-input input[type="tel"] {
-    width: calc(25% - 16px);
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ffb6c1;
-    border-radius: 5px;
-    font-size: 1em;
-    display: inline-block;
-}
-
-.error-info{
-    color: red;
-}
-
 
 .custom-select-wrapper {
     position: relative;
@@ -178,7 +121,7 @@ span.asdf {
 }
 
 .custom-select-wrapper::after {
-    content: '\25BC'; /* ¡å */
+    content: '\25BC';
     position: absolute;
     top: 50%;
     right: 15px;

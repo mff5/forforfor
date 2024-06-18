@@ -25,7 +25,7 @@
     <title>Title</title>
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js" charset="utf-8"></script>
 </head>
 <body>
 <header>

@@ -13,8 +13,8 @@
     <title>Title</title>
     <meta charset="UTF-8">
     <title>회원정보 변경</title>
-    <script language="javascript" src="${pageContext.request.contextPath}/js/customer.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/customer.css">
+    <script language="javascript" src="${pageContext.request.contextPath}/js/customerForm.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/customerForm.css">
     <script src="https://kit.fontawesome.com/b345dcbb9c.js" crossorigin="anonymous"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
