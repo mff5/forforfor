@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <td class="td1"><label for="productName">상품명</label><span style="color: red; font-size: 20px">*</span></td>
-                <td class="td2"><input type="text" name="productName" id="productName" value="${prouct.productName}" required></td>
+                <td class="td2"><input type="text" name="productName" id="productName" value="${product.productName}" required></td>
             </tr>
             <tr>
                 <td class="td1"><label for="originalPrice">정가</label><span style="color: red ;font-size: 20px">*</span></td>

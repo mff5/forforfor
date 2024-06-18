@@ -68,7 +68,7 @@
                             ${p.stock}
                     </td>
                     <td>
-                        <input type="button" value="수정" onclick="goProductModify(${p.productNo})">
+                        <input type="button" value="수정" onclick="goProductUpdate(${p.productNo})">
                     </td>
                     <td>
                         <input type="button" value="삭제" onclick="goProductDelete(${p.productNo})">
