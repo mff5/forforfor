@@ -31,7 +31,6 @@ public class FileUploadServlet extends HttpServlet {
                 String filePath = uploadPath + File.separator + fileName;
                 part.write(filePath);
 
-                // 클라이언트에게 반환할 URL 경로 생성
                 String fileUrl = request.getContextPath() + "/" + UPLOAD_DIRECTORY + "/" + fileName;
                 response.getWriter().println(fileUrl);
 
