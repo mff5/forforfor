@@ -1,16 +1,17 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="/views/header.jsp"/>
-<link rel="stylesheet" href="<c:url value="/css/list.css"/>">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/productList.js">
-</script>
+<link rel="stylesheet" href="<c:url value="/css/productList.css"/>">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/productList.js"></script>
 
 <div class="container">
     <div class="header">
         <b>상품목록(전체 상품:${count})</b>
-        <a href="${pageContext.request.contextPath}/admin?action=productForm" class="write-btn">상품등록</a>
+        <div class="button-container">
+            <a href="#" class="write-btn" onclick="goProductReset()">상품목록 초기화</a>
+            <a href="${pageContext.request.contextPath}/admin?action=productForm" class="write-btn">상품등록</a>
+        </div>
     </div>
     <table>
         <tr>
@@ -28,70 +29,45 @@
             <th>삭제</th>
         </tr>
         <c:if test="${count==0}">
-            <table>
-                <tr>
-                    <td align="center">
-                        저장된 상품이 없습니다.
-                    </td>
-            </table>
+            <tr>
+                <td colspan="12" align="center">
+                    저장된 상품이 없습니다.
+                </td>
+            </tr>
         </c:if>
-
         <c:if test="${count>0}">
             <c:forEach var="p" items="${productList}">
                 <tr>
                     <td>${p.productNo}</td>
-                    <td>
-                        <img src="${p.imgURL}" alt="대체문자" class="pImg">
-                    </td>
-                    <td>
-                            ${p.category}
-                    </td>
-                    <td>
-                            ${p.productName}
-                    </td>
-                    <td>
-                            ${p.originalPrice}
-                    </td>
-                    <td>
-                            ${p.discount}
-                    </td>
-                    <td>
-                            ${p.price}
-                    </td>
-                    <td>
-                            ${p.createdDate}
-                    </td>
-                    <td>
-                            ${p.updatedDate}
-                    </td>
-                    <td>
-                            ${p.stock}
-                    </td>
-                    <td>
-                        <input type="button" value="수정" onclick="goProductUpdate(${p.productNo})">
-                    </td>
-                    <td>
-                        <input type="button" value="삭제" onclick="goProductDelete(${p.productNo})">
-                    </td>
+                    <td><img src="${p.imgURL}" alt="대체문자" class="pImg"></td>
+                    <td>${p.category}</td>
+                    <td>${p.productName}</td>
+                    <td>${p.originalPrice}</td>
+                    <td>${p.discount}</td>
+                    <td>${p.price}</td>
+                    <td>${p.createdDate}</td>
+                    <td>${p.updatedDate}</td>
+                    <td>${p.stock}</td>
+                    <td><input type="button" value="수정" onclick="goProductUpdate(${p.productNo})"></td>
+                    <td><input type="button" value="삭제" onclick="goProductDelete(${p.productNo})"></td>
                 </tr>
             </c:forEach>
         </c:if>
     </table>
-</div>
-<div>
-    <c:if test="${count > 0}">
-        <c:if test="${startPage > pageBlock}">
-            <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage - pageBlock}">[이전]</a>
-        </c:if>
+    <div class="pagination">
+        <c:if test="${count > 0}">
+            <c:if test="${startPage > pageBlock}">
+                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage - pageBlock}">[이전]</a>
+            </c:if>
 
-        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${i}">[${i}]</a>
-        </c:forEach>
+            <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${i}">[${i}]</a>
+            </c:forEach>
 
-        <c:if test="${endPage < pageCount}">
-            <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage + pageBlock}">[다음]</a>
+            <c:if test="${endPage < pageCount}">
+                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage + pageBlock}">[다음]</a>
+            </c:if>
         </c:if>
-    </c:if>
-    <a href="#" class="write-btn" onclick="goProductReset()">상품목록 초기화</a>
+    </div>
 </div>
 <jsp:include page="/views/footer.jsp"/>

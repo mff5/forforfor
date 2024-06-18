@@ -11,11 +11,13 @@ body {
     margin: auto;
     overflow: hidden;
 }
+
 h1 {
     text-align: center;
     color: #333;
     margin-top: 20px;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -23,32 +25,50 @@ table {
     font-size: 18px;
     text-align: left;
 }
+
 th, td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
 }
+
 th {
     background-color: #4CAF50;
     color: white;
 }
+
 tr:hover {
     background-color: #f5f5f5;
 }
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 a {
     color: #4CAF50;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .write-btn {
@@ -57,30 +77,17 @@ a:hover {
     color: white;
     text-decoration: none;
     border-radius: 4px;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .write-btn:hover {
     background-color: #45a049;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.pagination {
+    margin-top: 20px;
+}
 
 a {
     text-decoration: none;
@@ -195,7 +202,31 @@ div.center {
     border-bottom: 2px solid rgb(194, 194, 194);
 }
 
-img.pImg{
+img.tbImg {
+    width: 380px;
+    height: 380px;
+}
+
+img.pImg {
     width: 100px;
     height: 100px;
+}
+
+span.bold {
+    font-weight: bold;
+}
+
+span.discount {
+    color: #504EB3;
+    font-weight: 900;
+}
+
+span.price {
+    font-weight: 900;
+}
+
+span.original {
+    text-decoration: line-through;
+    font-weight: 900;
+    color: gray;
 }
