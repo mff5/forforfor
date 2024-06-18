@@ -92,5 +92,6 @@
             <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage + pageBlock}">[다음]</a>
         </c:if>
     </c:if>
+    <a href="#" class="write-btn" onclick="goProductReset()">상품목록 초기화</a>
 </div>
 <jsp:include page="/views/footer.jsp"/>
