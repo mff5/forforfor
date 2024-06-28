@@ -29,16 +29,16 @@
                 <td class="td2">
                     <select name="category" id="category" required>
                         <optgroup label="Eyelash">
-                            <option value="No Glue">No Glue</option>
+                            <option value="NoGlue">No Glue</option>
                             <option value="Tidy">Tidy</option>
-                            <option value="B Line">B Line</option>
-                            <option value="A Line">A line</option>
-                            <option value="X Line">X Line</option>
+                            <option value="BLine">B Line</option>
+                            <option value="ALine">A line</option>
+                            <option value="XLine">X Line</option>
                         </optgroup>
                         <optgroup label="Brush">
-                            <option value="Rich Gold">Rich Gold</option>
-                            <option value="Pearl Vanilla">Pearl Vanilla</option>
-                            <option value="Black Label">Black Label</option>
+                            <option value="RichGold">Rich Gold</option>
+                            <option value="PearlVanilla">Pearl Vanilla</option>
+                            <option value="BlackLabel">Black Label</option>
                         </optgroup>
                         <optgroup label="Etc">
                             <option value="Pencil">Pencil</option>

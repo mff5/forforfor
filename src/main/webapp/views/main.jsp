@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="header.jsp"/>
-
 <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
 <script src="<c:url value="/js/main.js" />"></script>
     <section class="slideshow-container">

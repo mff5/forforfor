@@ -124,56 +124,6 @@ public class ProductDAO {
         }
         return product;
     }
-    public ArrayList<Product> productList(String sortBy) {
-        ArrayList<Product> productList = new ArrayList<>();
-
-        String sortColumn;
-        switch (sortBy) {
-            case "sales":
-                sortColumn = "sales desc";
-                break;
-            case "discount":
-                sortColumn = "discount desc";
-                break;
-            case "priceAsc":
-                sortColumn = "price asc";
-                break;
-            case "price":
-                sortColumn = "price desc";
-                break;
-            case "created_date":
-            default:
-                sortColumn = "created_date desc";
-                break;
-        }
-        
-        String sql = "select * from products where stock > 0 order by " + sortColumn;
-
-        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
-             Connection con = pcon.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()) {
-                Product product = new Product();
-                product.setProductNo(rs.getInt("product_no"));
-                product.setImgURL(rs.getString("imgURL"));
-                product.setCategory(rs.getString("category"));
-                product.setProductName(rs.getString("productName"));
-                product.setOriginalPrice(rs.getInt("originalPrice"));
-                product.setDiscount(rs.getInt("discount"));
-                product.setPrice(rs.getInt("price"));
-                product.setCreatedDate(rs.getDate("created_date"));
-                product.setUpdatedDate(rs.getDate("updated_date"));
-                product.setStock(rs.getInt("stock"));
-
-                productList.add(product);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return productList;
-    }
 
     public ArrayList<Product> getProductList()  {
         ArrayList<Product> productList = new ArrayList<>();
@@ -311,5 +261,257 @@ public class ProductDAO {
             e.printStackTrace();
         }
         return result;
+    }
+    public ArrayList<Product> productList(String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales desc";
+                break;
+            case "discount":
+                sortColumn = "discount desc";
+                break;
+            case "priceAsc":
+                sortColumn = "price asc";
+                break;
+            case "price":
+                sortColumn = "price desc";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date desc";
+                break;
+        }
+
+        String sql = "select * from products where stock > 0 order by " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNo(rs.getInt("product_no"));
+                product.setImgURL(rs.getString("imgURL"));
+                product.setCategory(rs.getString("category"));
+                product.setProductName(rs.getString("productName"));
+                product.setOriginalPrice(rs.getInt("originalPrice"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setCreatedDate(rs.getDate("created_date"));
+                product.setUpdatedDate(rs.getDate("updated_date"));
+                product.setStock(rs.getInt("stock"));
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+    public ArrayList<Product> productListEyelash(String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales desc";
+                break;
+            case "discount":
+                sortColumn = "discount desc";
+                break;
+            case "priceAsc":
+                sortColumn = "price asc";
+                break;
+            case "price":
+                sortColumn = "price desc";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date desc";
+                break;
+        }
+
+        String sql = "select * from products where stock > 0 and category in ('NoGlue', 'Tidy', 'BLine', 'Aline', 'XLine') order by " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNo(rs.getInt("product_no"));
+                product.setImgURL(rs.getString("imgURL"));
+                product.setCategory(rs.getString("category"));
+                product.setProductName(rs.getString("productName"));
+                product.setOriginalPrice(rs.getInt("originalPrice"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setCreatedDate(rs.getDate("created_date"));
+                product.setUpdatedDate(rs.getDate("updated_date"));
+                product.setStock(rs.getInt("stock"));
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+    public ArrayList<Product> productListBrush(String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales desc";
+                break;
+            case "discount":
+                sortColumn = "discount desc";
+                break;
+            case "priceAsc":
+                sortColumn = "price asc";
+                break;
+            case "price":
+                sortColumn = "price desc";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date desc";
+                break;
+        }
+
+        String sql = "select * from products where stock > 0 and category in ('RichGold', 'PearlVanilla', 'BlackLabel') order by " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNo(rs.getInt("product_no"));
+                product.setImgURL(rs.getString("imgURL"));
+                product.setCategory(rs.getString("category"));
+                product.setProductName(rs.getString("productName"));
+                product.setOriginalPrice(rs.getInt("originalPrice"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setCreatedDate(rs.getDate("created_date"));
+                product.setUpdatedDate(rs.getDate("updated_date"));
+                product.setStock(rs.getInt("stock"));
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+    public ArrayList<Product> productListEtc(String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales desc";
+                break;
+            case "discount":
+                sortColumn = "discount desc";
+                break;
+            case "priceAsc":
+                sortColumn = "price asc";
+                break;
+            case "price":
+                sortColumn = "price desc";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date desc";
+                break;
+        }
+
+        String sql = "select * from products where stock > 0 and category in ('Pencil', 'Spatula', 'Tweezer', 'Case') order by " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNo(rs.getInt("product_no"));
+                product.setImgURL(rs.getString("imgURL"));
+                product.setCategory(rs.getString("category"));
+                product.setProductName(rs.getString("productName"));
+                product.setOriginalPrice(rs.getInt("originalPrice"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setCreatedDate(rs.getDate("created_date"));
+                product.setUpdatedDate(rs.getDate("updated_date"));
+                product.setStock(rs.getInt("stock"));
+
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+    public ArrayList<Product> productListCategory(String category, String sortBy) {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        String sortColumn;
+        switch (sortBy) {
+            case "sales":
+                sortColumn = "sales desc";
+                break;
+            case "discount":
+                sortColumn = "discount desc";
+                break;
+            case "priceAsc":
+                sortColumn = "price asc";
+                break;
+            case "price":
+                sortColumn = "price desc";
+                break;
+            case "created_date":
+            default:
+                sortColumn = "created_date desc";
+                break;
+        }
+
+        String sql = "select * from products where stock > 0 and category = ? order by " + sortColumn;
+
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, category);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setProductNo(rs.getInt("product_no"));
+                    product.setImgURL(rs.getString("imgURL"));
+                    product.setCategory(rs.getString("category"));
+                    product.setProductName(rs.getString("productName"));
+                    product.setOriginalPrice(rs.getInt("originalPrice"));
+                    product.setDiscount(rs.getInt("discount"));
+                    product.setPrice(rs.getInt("price"));
+                    product.setCreatedDate(rs.getDate("created_date"));
+                    product.setUpdatedDate(rs.getDate("updated_date"));
+                    product.setStock(rs.getInt("stock"));
+
+                    productList.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
     }
 }

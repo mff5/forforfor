@@ -59,30 +59,30 @@
             <li><a href="${pageContext.request.contextPath}/views/main.jsp">Home</a></li>
             <li><a href="${pageContext.request.contextPath}/views/all.jsp">전체</a></li>
             <li>
-                <a href="#">Eyelash</a>
+                <a href="${pageContext.request.contextPath}/views/eyelash.jsp">Eyelash</a>
                 <div class="dropdown-content">
-                    <a href="#">No Glue</a>
-                    <a href="#">Tidy</a>
-                    <a href="#">B Line</a>
-                    <a href="#">A Line</a>
-                    <a href="#">X Line</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=NoGlue">No Glue</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=Tidy">Tidy</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=BLine">B Line</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=ALine">A Line</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=XLine">X Line</a>
                 </div>
             </li>
             <li>
-                <a href="#">Brush</a>
+                <a href="${pageContext.request.contextPath}/views/brush.jsp">Brush</a>
                 <div class="dropdown-content">
-                    <a href="#">Rich Gold</a>
-                    <a href="#">Pearl Vanilla</a>
-                    <a href="#">Black Label</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=RichGold">Rich Gold</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=PearlVanilla">Pearl Vanilla</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=BlackLabel">Black Label</a>
                 </div>
             </li>
             <li>
-                <a href="#">Etc</a>
+                <a href="${pageContext.request.contextPath}/views/etc.jsp">Etc</a>
                 <div class="dropdown-content">
-                    <a href="#">Pencil</a>
-                    <a href="#">Spatula</a>
-                    <a href="#">Tweezer</a>
-                    <a href="#">Case</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=Pencil">Pencil</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=Spatula">Spatula</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=Tweezer">Tweezer</a>
+                    <a href="${pageContext.request.contextPath}/views/category.jsp?category=Case">Case</a>
                 </div>
             </li>
             <li><a href="#">Search</a></li>
