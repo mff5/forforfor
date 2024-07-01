@@ -1,6 +1,5 @@
 package homepage.controller;
 
-import homepage.dao.BoardDAO;
 import homepage.dao.CartDAO;
 import homepage.dao.CustomerDAO;
 import homepage.dao.ProductDAO;
@@ -35,13 +34,16 @@ public class CustomerController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            System.out.println("action 이 null 입니다.");
             return;
         }
 
         switch (action) {
             case "idCheck":
                 idCheck(request, response);
+                break;
+            case "idCheck2":
+                idCheck2(request, response);
                 break;
             case "insertCustomer":
                 insertCustomer(request, response);
@@ -55,11 +57,11 @@ public class CustomerController extends HttpServlet {
             case "findId":
                 findId(request, response);
                 break;
-            case "idCheck2":
-                idCheck2(request, response);
-                break;
             case "findPw":
                 findPw(request, response);
+                break;
+            case "customerForm":
+                customerForm(request, response);
                 break;
             case "insertCart":
                 insertCart(request, response);
@@ -79,13 +81,10 @@ public class CustomerController extends HttpServlet {
             case "insertPurchase":
                 insertPurchase(request, response);
                 break;
-            case "customerForm":
-                customerForm(request, response);
-                break;
+
         }
     }
     private void customerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.getRequestDispatcher("/customer/customerForm.jsp").forward(request, response);
     }
 

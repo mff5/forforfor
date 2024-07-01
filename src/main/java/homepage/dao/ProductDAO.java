@@ -335,7 +335,7 @@ public class ProductDAO {
                 break;
         }
 
-        String sql = "select * from products where stock > 0 and category in ('NoGlue', 'Tidy', 'BLine', 'Aline', 'XLine') order by " + sortColumn;
+        String sql = "select * from products where stock > 0 and category in ('NoGlue', 'Tidy', 'BLine', 'ALine', 'XLine') order by " + sortColumn;
 
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();

@@ -21,6 +21,7 @@
     request.setAttribute("productList", productList);
 %>
 <jsp:include page="header.jsp"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css">
 <main>
     <section>
         <h2>전체</h2><br><br>
@@ -32,7 +33,7 @@
             <a href="${pageContext.request.contextPath}/views/category.jsp?category=${category}&sortBy=price">높은가격순</a> |
             <a href="${pageContext.request.contextPath}/views/category.jsp?category=${category}&sortBy=created_date">신상품순</a>
         </div>
-        <div>
+        <div class="table-container">
             <c:choose>
                 <c:when test="${not empty productList}">
                     <table align="center">

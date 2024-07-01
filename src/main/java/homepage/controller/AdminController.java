@@ -36,7 +36,7 @@ public class AdminController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            System.out.println("action 이 null 입니다.");
             return;
         }
 
@@ -62,14 +62,14 @@ public class AdminController extends HttpServlet {
             case "productUpdateForm" :
                 productUpdateForm(request, response);
                 break;
-            case "productReset" :
-                productReset(request, response);
-                break;
             case "updateProduct" :
                 updateProduct(request, response);
                 break;
             case "deleteProduct" :
                 deleteProduct(request, response);
+                break;
+            case "productReset" :
+                productReset(request, response);
                 break;
             case "purchaseList" :
                 purchaseList(request, response);
@@ -202,6 +202,8 @@ public class AdminController extends HttpServlet {
         int discount = Integer.parseInt(request.getParameter("discount"));
         int price = Integer.parseInt(request.getParameter("price"));
         int stock = Integer.parseInt(request.getParameter("stock"));
+
+        System.out.println("category: " + category);
 
         Product product = new Product();
         product.setImgURL(imgURL);

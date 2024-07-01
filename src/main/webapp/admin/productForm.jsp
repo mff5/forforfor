@@ -32,7 +32,7 @@
                             <option value="NoGlue">No Glue</option>
                             <option value="Tidy">Tidy</option>
                             <option value="BLine">B Line</option>
-                            <option value="ALine">A line</option>
+                            <option value="ALine">A Line</option>
                             <option value="XLine">X Line</option>
                         </optgroup>
                         <optgroup label="Brush">

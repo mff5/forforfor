@@ -50,7 +50,6 @@ ul {
 }
 
 nav {
-    background-color: #f1f1f1;
     padding: 10px 0;
 }
 
@@ -93,13 +92,10 @@ nav {
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
     color: hotpink;
 }
 
-
 footer {
-    background-color: #f1f1f1;
     padding: 20px;
     text-align: center;
 }
@@ -114,17 +110,18 @@ footer {
     margin: 5px 0;
 }
 
-
-
+.ooo {
+    max-width: 1200px;
+}
 
 div.center {
     border-top: 2px solid rgb(194, 194, 194);
     border-bottom: 2px solid rgb(194, 194, 194);
 }
 
-img.tbImg{
-    width: 290px;
-    height: 290px;
+img.tbImg {
+    max-width: 100%;
+    height: auto;
 }
 
 span.bold {
@@ -144,4 +141,28 @@ span.original {
     text-decoration: line-through;
     font-weight: 900;
     color: gray;
+}
+
+.table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    max-width: 290px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }

@@ -29,10 +29,20 @@ public class CommonController extends HttpServlet {
     private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        switch (action) {
+        if (action == null) {
+            System.out.println("action 이 null 입니다.");
+            return;
+        }
 
+        switch (action) {
             case  "login":
                 login(request, response);
+                break;
+            case "loginCheck" :
+                loginCheck(request, response);
+                break;
+            case "logout" :
+                logout(request, response);
                 break;
             case "boardForm" :
                 boardForm(request, response);
@@ -45,12 +55,6 @@ public class CommonController extends HttpServlet {
                 break;
             case "boardContent" :
                 boardContent(request, response);
-                break;
-            case "loginCheck" :
-                loginCheck(request, response);
-                break;
-            case "logout" :
-                logout(request, response);
                 break;
             case "boardUpdateForm" :
                 boardUpdateForm(request, response);
