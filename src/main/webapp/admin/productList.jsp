@@ -1,13 +1,24 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="homepage.model.Product" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    Integer count = (Integer) request.getAttribute("count");
+    ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");
+
+    request.setAttribute("productList", productList);
+    request.setAttribute("count", count);
+%>
+
+
 <jsp:include page="/views/header.jsp"/>
-<link rel="stylesheet" href="<c:url value="/css/productList.css"/>">
+<link rel="stylesheet" href="<c:url value='/css/productList.css'/>">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/productList.js"></script>
 
 <div class="container">
     <div class="header">
-        <b>상품목록(전체 상품:${count})</b>
+        <b>상품목록(전체 상품: ${count})</b>
         <div class="button-container">
             <a href="#" class="write-btn" onclick="goProductReset()">상품목록 초기화</a>
             <a href="${pageContext.request.contextPath}/admin?action=productForm" class="write-btn">상품등록</a>
@@ -28,14 +39,14 @@
             <th>수정</th>
             <th>삭제</th>
         </tr>
-        <c:if test="${count==0}">
+        <c:if test="${count == 0}">
             <tr>
                 <td colspan="12" align="center">
                     저장된 상품이 없습니다.
                 </td>
             </tr>
         </c:if>
-        <c:if test="${count>0}">
+        <c:if test="${count > 0}">
             <c:forEach var="p" items="${productList}">
                 <tr>
                     <td>${p.productNo}</td>

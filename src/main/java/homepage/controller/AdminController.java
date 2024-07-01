@@ -1,10 +1,8 @@
 package homepage.controller;
 
-import homepage.dao.BoardDAO;
 import homepage.dao.CustomerDAO;
 import homepage.dao.ProductDAO;
 import homepage.dao.PurchaseDAO;
-import homepage.model.Cart;
 import homepage.model.Customer;
 import homepage.model.Product;
 import homepage.model.Purchase;

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/cartList.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/findIdForm.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/findPwForm.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/loginForm.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/boardList.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/js/productForm.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
