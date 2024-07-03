@@ -55,9 +55,6 @@
     </table>
 </div>
 <div>
-    <%
-
-    %>
     <c:if test="${count > 0}">
         <c:if test="${startPage > pageBlock}">
             <a href="cartList.jsp?pageNum=${startPage - pageBlock}">[이전]</a>

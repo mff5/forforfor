@@ -11,7 +11,7 @@
 <div class="container">
     <div class="header">
         <b>결제목록</b>
-        <a href="#" class="write-btn" onclick="window.location.href='/homepage/admin?action=purchaseReset'">결제목록 초기화</a>
+        <a href="${pageContext.request.contextPath}/admin?action=purchaseReset" class="write-btn">결제목록 초기화</a>
     </div>
     <table>
         <tr>

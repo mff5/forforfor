@@ -4,12 +4,12 @@
 <c:if test="${result}">
     <script>
         alert("결제목록 초기화 성공");
-        window.location.href = <c:url value="/admin/purchaseList.jsp"/>
+        window.location.href = '/homepage/admin?action=purchaseList';
     </script>
 </c:if>
 <c:if test="${!result}">
     <script>
         alert("결제목록 초기화 실패");
-        window.location.href = <c:url value="/admin/purchaseList.jsp"/>
+        window.location.href = '/homepage/admin?action=purchaseList';
     </script>
 </c:if>
