@@ -138,7 +138,7 @@ public class CartDAO {
         return cartList;
     }
 
-    public ArrayList<Cart> cartList2(int start, int end) {
+    public ArrayList<Cart> cartList2(int start, int pageSize) {
         ArrayList<Cart> cartList = new ArrayList<>();
         String sql = "select * from cart order by cart_no asc offset ? rows fetch next ? rows only";
 
@@ -146,11 +146,9 @@ public class CartDAO {
              Connection con = pcon.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            int offset = start - 1;
-            int fetch = end + 1;
 
-            pstmt.setInt(1, offset);
-            pstmt.setInt(2, fetch);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, pageSize);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {

@@ -153,20 +153,17 @@ public class ProductDAO {
         return productList;
     }
 
-    public ArrayList<Product> getProductList2(int start, int end)  {
+    public ArrayList<Product> getProductList2(int start, int pageSize) {
         ArrayList<Product> productList = new ArrayList<>();
-        String sql = "select * from products where stock>0 order by product_no desc offset ? row fetch next ? rows only";
-        try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
-            Connection con = pcon.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql)) {
+        String sql = "select * from products where stock > 0 order by product_no desc offset ? rows fetch next ? rows only";
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            int offset = start-1;
-            int fetch = end+1;
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, pageSize);
 
-            pstmt.setInt(1, offset);
-            pstmt.setInt(2, fetch);
-
-            try(ResultSet rs = pstmt.executeQuery()) {
+            try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Product product = new Product();
                     product.setProductNo(rs.getInt("product_no"));
@@ -179,17 +176,19 @@ public class ProductDAO {
                     product.setCreatedDate(rs.getDate("created_date"));
                     product.setUpdatedDate(rs.getDate("updated_date"));
                     product.setStock(rs.getInt("stock"));
+                    product.setSales(rs.getInt("sales"));
 
                     productList.add(product);
                 }
-            } catch (Exception e)   {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        } catch (Exception e)   {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return productList;
     }
+
 
     public boolean deleteProduct(int productNo)  {
         boolean result = false;

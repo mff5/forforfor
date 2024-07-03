@@ -235,19 +235,14 @@ public class CustomerController extends HttpServlet {
             pageNum = "1";
         }
         int currentPage = Integer.parseInt(pageNum);
-        int start = (currentPage - 1) * pageSize + 1;
-        int end = currentPage * pageSize;
+        int start = (currentPage - 1) * pageSize;
 
-        int count;
-        int number;
-
+        int count = cartDAO.getCartCount();
         ArrayList<Cart> cartList = new ArrayList<>();
-        count = cartDAO.getCartCount();
         if (count > 0) {
-            cartList = cartDAO.cartList2(start, end);
+            cartList = cartDAO.cartList2(start, pageSize);
             int pageBlock = 5;
-            int temp = count % pageSize == 0 ? 0 : 1;
-            int pageCount = count / pageSize + temp;
+            int pageCount = (int) Math.ceil((double) count / pageSize);
 
             int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
             int endPage = startPage + pageBlock - 1;
@@ -257,12 +252,13 @@ public class CustomerController extends HttpServlet {
             request.setAttribute("endPage", endPage);
             request.setAttribute("pageCount", pageCount);
             request.setAttribute("pageBlock", pageBlock);
+            request.setAttribute("currentPage", currentPage);
         }
-        number = start;
+
 
         request.setAttribute("cartList", cartList);
         request.setAttribute("count", count);
-        request.setAttribute("number", number);
+
 
         request.getRequestDispatcher("/customer/cartList.jsp").forward(request, response);
     }

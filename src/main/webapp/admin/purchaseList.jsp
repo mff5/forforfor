@@ -31,6 +31,25 @@
             </tr>
         </c:forEach>
     </table>
+    <div class="pagination">
+        <c:if test="${startPage > 1}">
+            <a href="${pageContext.request.contextPath}/admin?action=purchaseList&pageNum=${startPage - 1}">[이전]</a>
+        </c:if>
+        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+            <c:choose>
+                <c:when test="${i eq currentPage}">
+                    <a style="font-size: 25px">[${i}]</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/admin?action=purchaseList&pageNum=${i}">[${i}]</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <c:if test="${endPage < pageCount}">
+            <a href="${pageContext.request.contextPath}/admin?action=purchaseList&pageNum=${endPage + 1}">[다음]</a>
+        </c:if>
+    </div>
 </div>
 
 <jsp:include page="/views/footer.jsp"/>

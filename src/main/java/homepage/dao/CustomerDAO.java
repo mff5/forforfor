@@ -204,6 +204,48 @@ public class CustomerDAO {
         }
         return customerList;
     }
+    //
+    public ArrayList<Customer> customerList2(int start, int pageSize)  {
+        ArrayList<Customer> customerList = new ArrayList<>();
+        String sql = "select * from customers where userId <> 'admin' order by customer_no asc offset ? rows fetch next ? rows only";
+        try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+            Connection con = pcon.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, pageSize);
+
+            try(ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next())   {
+                    Customer customer = new Customer();
+                    customer.setCustomerNo(rs.getInt("customer_no"));
+                    customer.setUserId(rs.getString("userId"));
+                    customer.setUserPw(rs.getString("userPw"));
+                    customer.setUserName(rs.getString("userName"));
+                    customer.setUserEmail(rs.getString("userEmail"));
+                    customer.setUserPost(rs.getString("userPost"));
+
+                    String address = rs.getString("address");
+                    String[] addressParts = address.split(",", 2);
+                    customer.setAddress1(addressParts.length > 0 ? addressParts[0] : "");
+                    customer.setAddress2(addressParts.length > 1 ? addressParts[1] : "");
+
+                    String phoneNum = rs.getString("phone");
+                    String[] phoneNumParts = phoneNum.split("-", 3);
+                    customer.setPhone1(phoneNumParts.length > 0 ? phoneNumParts[0] : "");
+                    customer.setPhone2(phoneNumParts.length > 1 ? phoneNumParts[1] : "");
+                    customer.setPhone3(phoneNumParts.length > 2 ? phoneNumParts[2] : "");
+
+                    customer.setRegisterDate(rs.getDate("regDate"));
+                    customerList.add(customer);
+                }
+            }
+
+        } catch (Exception e)   {
+            e.printStackTrace();
+        }
+        return customerList;
+    }
     public boolean deleteCustomer(String userId)   {
         boolean result = false;
         try(PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
@@ -286,5 +328,20 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return result;
+    }
+    public int getCustomerCount() {
+        int count=0;
+        String sql = "select count(*) from customers";
+        try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
+             Connection con = pcon.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }

@@ -3,6 +3,7 @@ package homepage.controller;
 import homepage.dao.BoardDAO;
 import homepage.dao.CustomerDAO;
 import homepage.model.Board;
+import homepage.model.Cart;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -182,36 +183,30 @@ public class CommonController extends HttpServlet {
             pageNum = "1";
         }
         int currentPage = Integer.parseInt(pageNum);
-        int start = (currentPage - 1) * pageSize + 1;
-        int end = currentPage * pageSize;
+        int start = (currentPage - 1) * pageSize;
 
-        int count;
+        int count = boardDAO.getBoardCount();
         ArrayList<Board> boardList = new ArrayList<>();
-        BoardDAO dao = BoardDAO.getInstance();
-        count = dao.getBoardCount();
         if (count > 0) {
-            boardList = dao.getBoardList(start, end);
+            boardList = boardDAO.getBoardList(start, pageSize);
+            int pageBlock = 5;
+            int pageCount = (int) Math.ceil((double) count / pageSize);
+
+            int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+            int endPage = startPage + pageBlock - 1;
+            if (endPage > pageCount) endPage = pageCount;
+
+            request.setAttribute("startPage", startPage);
+            request.setAttribute("endPage", endPage);
+            request.setAttribute("pageCount", pageCount);
+            request.setAttribute("pageBlock", pageBlock);
+            request.setAttribute("currentPage", currentPage);
         }
 
-        int number = count - (currentPage - 1) * pageSize;
 
-        request.setAttribute("count", count);
         request.setAttribute("boardList", boardList);
-        request.setAttribute("number", number);
-        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("count", count);
 
-        int pageBlock = 5;
-        int temp = count % pageSize == 0 ? 0 : 1;
-        int pageCount = count / pageSize + temp;
-
-        int startPage = ((currentPage-1)/pageBlock)*pageBlock + 1;
-        int endPage = startPage + pageBlock - 1;
-        if (endPage > pageCount) endPage = pageCount;
-
-        request.setAttribute("startPage", startPage);
-        request.setAttribute("endPage", endPage);
-        request.setAttribute("pageBlock", pageBlock);
-        request.setAttribute("pageCount", pageCount);
 
         request.getRequestDispatcher("/common/boardList.jsp").forward(request, response);
     }

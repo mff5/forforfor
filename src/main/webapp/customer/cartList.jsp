@@ -28,11 +28,12 @@
 
         <c:if test="${count>0}">
             <c:set var="totalAmount" value="0"/>
+            <c:set var="number" value="1"/>
             <c:forEach var="c" items="${cartList}">
                 <c:set var="totalAmount" value="${totalAmount + c.price}"/>
                 <tr>
                     <td>
-                            ${c.cartNo}
+                            ${number}
                     </td>
                     <td>
                         <img src="${c.imgURL}" alt="대체문자" class="pImg">
@@ -50,23 +51,28 @@
                         <input type="button" value="삭제" onclick="deleteCart(${c.cartNo})">
                     </td>
                 </tr>
+                <c:set var="number" value="${number+1}"/>
             </c:forEach>
         </c:if>
     </table>
 </div>
-<div>
-    <c:if test="${count > 0}">
-        <c:if test="${startPage > pageBlock}">
-            <a href="cartList.jsp?pageNum=${startPage - pageBlock}">[이전]</a>
-        </c:if>
+<div class="pagination">
+    <c:if test="${startPage > 1}">
+        <a href="${pageContext.request.contextPath}/customer?action=cartList&pageNum=${startPage - 1}">[이전]</a>
+    </c:if>
+    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+        <c:choose>
+            <c:when test="${i eq currentPage}">
+                <a style="font-size: 25px">[${i}]</a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/customer?action=cartList&pageNum=${i}">[${i}]</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
 
-        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a href="cartList.jsp?pageNum=${i}">[${i}]</a>
-        </c:forEach>
-
-        <c:if test="${endPage < pageCount}">
-            <a href="cartList.jsp?pageNum=${startPage + pageBlock}">[다음]</a>
-        </c:if>
+    <c:if test="${endPage < pageCount}">
+        <a href="${pageContext.request.contextPath}/customer?action=cartList&pageNum=${endPage + 1}">[다음]</a>
     </c:if>
 </div>
 <c:if test="${count>0}">

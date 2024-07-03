@@ -93,7 +93,6 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("/admin/purchaseResetProc.jsp").forward(request, response);
     }
     private void purchaseList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int pageSize = 10;
 
         String pageNum = request.getParameter("pageNum");
@@ -101,19 +100,14 @@ public class AdminController extends HttpServlet {
             pageNum = "1";
         }
         int currentPage = Integer.parseInt(pageNum);
-        int start = (currentPage - 1) * pageSize + 1;
-        int end = currentPage * pageSize;
+        int start = (currentPage - 1) * pageSize;
 
-        int count;
-        int number;
-
+        int count = purchaseDAO.purchaseCount();
         ArrayList<Purchase> purchaseList = new ArrayList<>();
-        count = purchaseDAO.purchaseCount();
         if (count > 0) {
-            purchaseList = purchaseDAO.purchaseList(start, end);
+            purchaseList = purchaseDAO.purchaseList(start, pageSize);
             int pageBlock = 5;
-            int temp = count % pageSize == 0 ? 0 : 1;
-            int pageCount = count / pageSize + temp;
+            int pageCount = (int) Math.ceil((double) count / pageSize);
 
             int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
             int endPage = startPage + pageBlock - 1;
@@ -123,18 +117,47 @@ public class AdminController extends HttpServlet {
             request.setAttribute("endPage", endPage);
             request.setAttribute("pageCount", pageCount);
             request.setAttribute("pageBlock", pageBlock);
+            request.setAttribute("currentPage", currentPage);
         }
-        number = start;
 
         request.setAttribute("purchaseList", purchaseList);
         request.setAttribute("count", count);
-        request.setAttribute("number", number);
+
 
         request.getRequestDispatcher("/admin/purchaseList.jsp").forward(request, response);
     }
     private void customerList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<Customer> customerList = customerDAO.customerList();
+        int pageSize = 10;
+
+        String pageNum = request.getParameter("pageNum");
+        if (pageNum == null) {
+            pageNum = "1";
+        }
+        int currentPage = Integer.parseInt(pageNum);
+        int start = (currentPage - 1) * pageSize;
+
+        int count = customerDAO.getCustomerCount();
+        ArrayList<Customer> customerList = new ArrayList<>();
+        if (count > 0) {
+            customerList = customerDAO.customerList2(start, pageSize);
+            int pageBlock = 5;
+            int pageCount = (int) Math.ceil((double) count / pageSize);
+
+            int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+            int endPage = startPage + pageBlock - 1;
+            if (endPage > pageCount) endPage = pageCount;
+
+            request.setAttribute("startPage", startPage);
+            request.setAttribute("endPage", endPage);
+            request.setAttribute("pageCount", pageCount);
+            request.setAttribute("pageBlock", pageBlock);
+            request.setAttribute("currentPage", currentPage);
+        }
+
         request.setAttribute("customerList", customerList);
+        request.setAttribute("count", count);
+
+
         request.getRequestDispatcher("/admin/customerList.jsp").forward(request, response);
     }
 
@@ -150,7 +173,6 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("/customer/customerListProc.jsp").forward(request, response);
     }
     private void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int pageSize = 10;
 
         String pageNum = request.getParameter("pageNum");
@@ -158,19 +180,14 @@ public class AdminController extends HttpServlet {
             pageNum = "1";
         }
         int currentPage = Integer.parseInt(pageNum);
-        int start = (currentPage - 1) * pageSize + 1;
-        int end = currentPage * pageSize;
+        int start = (currentPage - 1) * pageSize;
 
-        int count;
-        int number;
-
+        int count = productDAO.getProductCount();
         ArrayList<Product> productList = new ArrayList<>();
-        count = productDAO.getProductCount();
         if (count > 0) {
-            productList = productDAO.getProductList2(start, end);
+            productList = productDAO.getProductList2(start, pageSize);
             int pageBlock = 5;
-            int temp = count % pageSize == 0 ? 0 : 1;
-            int pageCount = count / pageSize + temp;
+            int pageCount = (int) Math.ceil((double) count / pageSize);
 
             int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
             int endPage = startPage + pageBlock - 1;
@@ -180,12 +197,12 @@ public class AdminController extends HttpServlet {
             request.setAttribute("endPage", endPage);
             request.setAttribute("pageCount", pageCount);
             request.setAttribute("pageBlock", pageBlock);
+            request.setAttribute("currentPage", currentPage);
         }
-        number = start;
 
         request.setAttribute("productList", productList);
         request.setAttribute("count", count);
-        request.setAttribute("number", number);
+
 
         request.getRequestDispatcher("/admin/productList.jsp").forward(request, response);
     }

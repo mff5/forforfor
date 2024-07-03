@@ -23,7 +23,7 @@
                 <td align="center" colspan="6">게시판에 저장된 글이 없습니다.</td>
             </tr>
         </c:if>
-        <c:set var="number" value="${number}" scope="page" />
+        <c:set var="number" value="${count}"/>
         <c:forEach var="board" items="${boardList}">
             <tr>
                 <td>${number}</td>
@@ -45,19 +45,27 @@
                 <td>${board.updatedDate}</td>
                 <td align="center" width="50">${board.views}</td>
             </tr>
-            <c:set var="number" value="${number - 1}" scope="page" />
+            <c:set var="number" value="${number - 1}"/>
         </c:forEach>
     </table>
-    <c:if test="${count > 0}">
-        <c:if test="${startPage > pageBlock}">
-            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${startPage - pageBlock}">[이전]</a>
+    <div class="pagination">
+        <c:if test="${startPage > 1}">
+            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${startPage - 1}">[이전]</a>
         </c:if>
         <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${i}">[${i}]</a>
+            <c:choose>
+                <c:when test="${i eq currentPage}">
+                    <a style="font-size: 25px">[${i}]</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${i}">[${i}]</a>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
+
         <c:if test="${endPage < pageCount}">
-            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${startPage + pageBlock}">[다음]</a>
+            <a href="${pageContext.request.contextPath}/common?action=boardList&pageNum=${endPage + 1}">[다음]</a>
         </c:if>
-    </c:if>
+    </div>
 </div>
 <jsp:include page="/views/footer.jsp"/>

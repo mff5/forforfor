@@ -235,18 +235,16 @@ public class BoardDAO {
         return result;
     }
 
-    public ArrayList<Board> getBoardList(int start, int end) {
+    public ArrayList<Board> getBoardList(int start, int pageSize) {
         ArrayList<Board> boardList = new ArrayList<>();
         String sql = "select * from board order by ref_no desc, step_no asc offset ? rows fetch next ? rows only ";
         try (PooledConnection pcon = ConnectionPool.getInstance().getPooledConnection();
              Connection con = pcon.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            int offset = start - 1;
-            int fetch = end + 1;
 
-            pstmt.setInt(1, offset);
-            pstmt.setInt(2, fetch);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, pageSize);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {

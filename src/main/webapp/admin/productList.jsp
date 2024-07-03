@@ -1,16 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="homepage.model.Product" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    Integer count = (Integer) request.getAttribute("count");
-    ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");
-
-    request.setAttribute("productList", productList);
-    request.setAttribute("count", count);
-%>
-
 
 <jsp:include page="/views/header.jsp"/>
 <link rel="stylesheet" href="<c:url value='/css/productList.css'/>">
@@ -35,6 +24,7 @@
             <th>가격</th>
             <th>등록일</th>
             <th>수정일</th>
+            <th>판매량</th>
             <th>재고</th>
             <th>수정</th>
             <th>삭제</th>
@@ -58,6 +48,7 @@
                     <td>${p.price}</td>
                     <td>${p.createdDate}</td>
                     <td>${p.updatedDate}</td>
+                    <td>${p.sales}</td>
                     <td>${p.stock}</td>
                     <td><input type="button" value="수정" onclick="goProductUpdate(${p.productNo})"></td>
                     <td><input type="button" value="삭제" onclick="goProductDelete(${p.productNo})"></td>
@@ -66,18 +57,22 @@
         </c:if>
     </table>
     <div class="pagination">
-        <c:if test="${count > 0}">
-            <c:if test="${startPage > pageBlock}">
-                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage - pageBlock}">[이전]</a>
-            </c:if>
+        <c:if test="${startPage > 1}">
+            <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage - 1}">[이전]</a>
+        </c:if>
+        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+            <c:choose>
+                <c:when test="${i eq currentPage}">
+                    <a style="font-size: 25px">[${i}]</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${i}">[${i}]</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
 
-            <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${i}">[${i}]</a>
-            </c:forEach>
-
-            <c:if test="${endPage < pageCount}">
-                <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${startPage + pageBlock}">[다음]</a>
-            </c:if>
+        <c:if test="${endPage < pageCount}">
+            <a href="${pageContext.request.contextPath}/admin?action=productList&pageNum=${endPage + 1}">[다음]</a>
         </c:if>
     </div>
 </div>
