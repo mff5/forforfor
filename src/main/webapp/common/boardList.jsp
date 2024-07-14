@@ -29,11 +29,8 @@
                 <td>${number}</td>
                 <td>
                     <c:if test="${board.depthLevel > 0}">
-                        <img src="<c:url value="/images/re.gif"/>" width="${5 * board.depthLevel}" height="16">
+                        <img src="<c:url value="/images/level.gif"/>" width="${20 * board.depthLevel}" height="16">
                         <img src="<c:url value="/images/re.gif"/>">
-                    </c:if>
-                    <c:if test="${board.depthLevel == 0}">
-                        <img src="../images/level.gif" width="0" height="16">
                     </c:if>
                     <a href="${pageContext.request.contextPath}/common?action=boardContent&postNo=${board.postNo}&pageNum=${currentPage}">${board.title}</a>
                     <c:if test="${board.views >= 20}">
